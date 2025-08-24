@@ -91,7 +91,7 @@ body{
 .chip--active{ outline:2px solid #6a3c1c}
 
 
-/* Carrossel */
+/* ================== CARROSSEL ================== */
 
 .carousel {
   position: relative;
@@ -113,8 +113,8 @@ body{
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 720px;   /* maior largura */
-  height: 405px;  /* 16:9 perfeito */
+  width: 720px;   /* largura padrão */
+  height: 405px;  /* proporção 16:9 */
   border-radius: 18px;
   overflow: hidden;
   transform: translate(-50%, -50%) scale(0.75);
@@ -132,30 +132,6 @@ body{
   display: block;
 }
 
-/* Legenda estilo Sympla */
-.carousel-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.75));
-  color: #fff;
-  font-size: 16px;
-}
-
-.carousel-caption h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.carousel-caption p {
-  margin: 5px 0 0;
-  font-size: 14px;
-  opacity: 0.85;
-}
-
 /* Estado ativo (centro) */
 .carousel-item.active {
   transform: translate(-50%, -50%) scale(1);
@@ -165,23 +141,23 @@ body{
 
 /* Próximo (à direita) */
 .carousel-item.next {
-  transform: translate(calc(-50% + 500px), -50%) scale(0.85) rotateY(-12deg);
-  opacity: 0.8;
+  transform: translate(calc(-50% + 280px), -50%) scale(0.92) rotateY(-6deg);
+  opacity: 0.9;
   z-index: 2;
 }
 
 /* Anterior (à esquerda) */
 .carousel-item.prev {
-  transform: translate(calc(-50% - 500px), -50%) scale(0.85) rotateY(12deg);
-  opacity: 0.8;
+  transform: translate(calc(-50% - 280px), -50%) scale(0.92) rotateY(6deg);
+  opacity: 0.9;
   z-index: 2;
 }
 
-/* Fora do alcance */
+/* Fora do alcance (mas ainda visíveis levemente) */
 .carousel-item.hidden {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.6);
-  z-index: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  opacity: 0.3;
+  z-index: 1;
 }
 
 /* Botões */
@@ -197,7 +173,7 @@ body{
   cursor: pointer;
   font-size: 22px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-  z-index: 5; /* fica acima das imagens */
+  z-index: 5;
 }
 
 .btn:hover {
@@ -205,11 +181,11 @@ body{
 }
 
 .btn.prev-btn {
-  left: -80px; /* afasta bem do card */
+  left: 20px;
 }
 
 .btn.next-btn {
-  right: -80px;
+  right: 20px;
 }
 
 /* Indicadores */
