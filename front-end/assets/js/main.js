@@ -1,12 +1,19 @@
-const items = document.querySelectorAll(".carousel-item");
+const track = document.querySelector(".carousel-track");
+const items = Array.from(document.querySelectorAll(".carousel-item"));
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 const indicatorsContainer = document.querySelector(".indicators");
 
 let current = 0;
 let autoPlayInterval;
+let startX = 0;
+let endX = 0;
 
-// Criar bolinhas (dots)
+// Zera qualquer classe estática que tenha vindo do HTML
+items.forEach(el => (el.className = "carousel-item"));
+
+// Cria os dots
+indicatorsContainer.innerHTML = "";
 items.forEach((_, i) => {
   const dot = document.createElement("div");
   dot.classList.add("dot");
@@ -14,19 +21,28 @@ items.forEach((_, i) => {
   dot.addEventListener("click", () => goToSlide(i));
   indicatorsContainer.appendChild(dot);
 });
+const dots = Array.from(document.querySelectorAll(".dot"));
 
-const dots = document.querySelectorAll(".dot");
+// Helpers
+const mod = (n, m) => ((n % m) + m) % m;
 
 function updateCarousel() {
+  const n = items.length;
+
   items.forEach((item, i) => {
-    item.classList.remove("active", "prev", "next", "hidden");
+    // reset para garantir estado limpo
+    item.className = "carousel-item";
 
     if (i === current) {
       item.classList.add("active");
-    } else if (i === (current + 1) % items.length) {
+    } else if (i === mod(current + 1, n)) {
       item.classList.add("next");
-    } else if (i === (current - 1 + items.length) % items.length) {
+    } else if (i === mod(current - 1, n)) {
       item.classList.add("prev");
+    } else if (i === mod(current + 2, n)) {
+      item.classList.add("next-2");
+    } else if (i === mod(current - 2, n)) {
+      item.classList.add("prev-2");
     } else {
       item.classList.add("hidden");
     }
@@ -38,41 +54,63 @@ function updateCarousel() {
 }
 
 function nextSlide() {
-  current = (current + 1) % items.length;
+  current = mod(current + 1, items.length);
   updateCarousel();
 }
 
 function prevSlide() {
-  current = (current - 1 + items.length) % items.length;
+  current = mod(current - 1, items.length);
   updateCarousel();
 }
 
 function goToSlide(index) {
-  current = index;
+  current = mod(index, items.length);
   updateCarousel();
   resetAutoPlay();
 }
 
 // autoplay a cada 5s
 function startAutoPlay() {
+  stopAutoPlay();
   autoPlayInterval = setInterval(nextSlide, 5000);
 }
-
+function stopAutoPlay() {
+  if (autoPlayInterval) clearInterval(autoPlayInterval);
+}
 function resetAutoPlay() {
-  clearInterval(autoPlayInterval);
   startAutoPlay();
 }
 
-// Eventos
-nextBtn.addEventListener("click", () => {
-  nextSlide();
-  resetAutoPlay();
-});
-prevBtn.addEventListener("click", () => {
-  prevSlide();
-  resetAutoPlay();
-});
+// Botões
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    resetAutoPlay();
+  });
+}
+if (prevBtn) {
+  prevBtn.addEventListener("click", () => {
+    prevSlide();
+    resetAutoPlay();
+  });
+}
 
-// Inicialização
+// Swipe no mobile
+if (track) {
+  track.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  track.addEventListener("touchend", (e) => {
+    endX = e.changedTouches[0].clientX;
+    const delta = endX - startX;
+    if (Math.abs(delta) > 50) {
+      if (delta < 0) nextSlide(); else prevSlide();
+      resetAutoPlay();
+    }
+  });
+}
+
+// Início
 updateCarousel();
 startAutoPlay();

@@ -8,6 +8,9 @@
   --ink:#2b2016;    
   --white:#ffffff;
   --shadow:0 6px 18px rgba(0,0,0,.12);
+
+  /* controls do carrossel */
+  --slide-offset: clamp(200px, 16vw, 320px);
 }
 
 *{box-sizing:border-box}
@@ -19,14 +22,10 @@ body{
   background-color:var(--sand-2);
 }
 
-
 /* Container central */
-
 .container{width:min(1200px, 92%); margin-inline:auto}
 
-
 /* Faixa superior decorativa */
-
 .faixa-superior{
   background:linear-gradient(to bottom, #d8b26a, #c09461);
   height:110px;
@@ -42,9 +41,7 @@ body{
   pointer-events:none;
 }
 
-
 /* Topbar */
-
 .topbar{
   display:flex; align-items:center; justify-content:flex-end;
   gap:16px; padding:14px 0;
@@ -61,9 +58,7 @@ body{
   cursor:pointer;
 }
 
-
 /* Hero */
-
 .hero{ text-align:center; margin-top:10px; margin-bottom:10px;}
 .site-title{
   font-family:'Baloo 2', cursive; font-size:clamp(32px, 5vw, 56px);
@@ -90,16 +85,16 @@ body{
 }
 .chip--active{ outline:2px solid #6a3c1c}
 
-
 /* ================== CARROSSEL ================== */
-
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 1100px; /* mais largo, ocupa mais da tela */
-  height: 500px;
+  max-width: 1200px;
+  /* altura responde ao viewport, mas limita para não exagerar */
+  height: clamp(360px, 52vw, 560px);
   margin: 0 auto;
   overflow: hidden;
+  perspective: 1600px; /* dá leve profundidade */
 }
 
 .carousel-track {
@@ -108,122 +103,121 @@ body{
   height: 100%;
 }
 
-/* Itens do carrossel */
+/* Cartões (absolutos, centralizados) */
 .carousel-item {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 720px;   /* largura padrão */
-  height: 405px;  /* proporção 16:9 */
-  border-radius: 18px;
+  width: min(1000px, 86%);
+  height: calc(100% - 40px); /* deixa espaço pros dots */
+  border-radius: 22px;
   overflow: hidden;
-  transform: translate(-50%, -50%) scale(0.75);
+  background: #000;
+  transform: translate(-50%, -50%) scale(.78);
   opacity: 0;
   z-index: 1;
-  transition: transform 0.6s ease, opacity 0.6s ease, z-index 0.3s;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-  background: #000; /* evita "vazios" quando imagem não cobre */
+  transition: transform .6s ease, opacity .6s ease, z-index .3s;
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
 }
 
-.carousel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.carousel-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
-/* Estado ativo (centro) */
-.carousel-item.active {
+/* Centro */
+.carousel-item.active{
   transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-  z-index: 3;
+  opacity:1;
+  z-index:5;
 }
 
-/* Próximo (à direita) */
-.carousel-item.next {
-  transform: translate(calc(-50% + 280px), -50%) scale(0.92) rotateY(-6deg);
-  opacity: 0.9;
-  z-index: 2;
+/* Vizinho imediato */
+.carousel-item.next{
+  transform: translate(calc(-50% + var(--slide-offset)), -50%) scale(.92) rotateY(-5deg);
+  opacity:.9;
+  z-index:4;
+}
+.carousel-item.prev{
+  transform: translate(calc(-50% - var(--slide-offset)), -50%) scale(.92) rotateY(5deg);
+  opacity:.9;
+  z-index:4;
 }
 
-/* Anterior (à esquerda) */
-.carousel-item.prev {
-  transform: translate(calc(-50% - 280px), -50%) scale(0.92) rotateY(6deg);
-  opacity: 0.9;
-  z-index: 2;
+/* Segundo plano */
+.carousel-item.next-2{
+  transform: translate(calc(-50% + calc(var(--slide-offset)*2)), -50%) scale(.84) rotateY(-6deg);
+  opacity:.55;
+  z-index:3;
+}
+.carousel-item.prev-2{
+  transform: translate(calc(-50% - calc(var(--slide-offset)*2)), -50%) scale(.84) rotateY(6deg);
+  opacity:.55;
+  z-index:3;
 }
 
-/* Fora do alcance (mas ainda visíveis levemente) */
-.carousel-item.hidden {
-  transform: translate(-50%, -50%) scale(0.85);
-  opacity: 0.3;
-  z-index: 1;
+/* Restante */
+.carousel-item.hidden{
+  transform: translate(-50%, -50%) scale(.72);
+  opacity:.25;
+  z-index:1;
 }
 
 /* Botões */
-.btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.95);
-  border: none;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 22px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-  z-index: 5;
+.btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background: rgba(255,255,255,.95);
+  border:none;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:22px;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+  z-index:6;
+  transition:filter .2s ease, background .2s ease;
 }
-
-.btn:hover {
-  background: #fff;
-}
-
-.btn.prev-btn {
-  left: 20px;
-}
-
-.btn.next-btn {
-  right: 20px;
-}
+.btn:hover{ filter:brightness(1.03); }
+.btn.prev-btn{ left:20px; }
+.btn.next-btn{ right:20px; }
 
 /* Indicadores */
-.indicators {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 6;
+.indicators{
+  position:absolute;
+  bottom:16px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  z-index:7;
 }
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #bbb;
-  cursor: pointer;
-  transition: background 0.3s;
+.dot{
+  width:12px; height:12px; border-radius:50%;
+  background:#bdbdbd;
+  cursor:pointer; transition:background .25s ease, transform .25s ease;
 }
+.dot.active{ background:#333; transform:scale(1.05); }
 
-.dot.active {
-  background: #333;
+/* ===== Responsivo do carrossel ===== */
+@media (max-width: 900px){
+  :root{ --slide-offset: clamp(160px, 18vw, 240px); }
 }
-
-
-
-/* Responsivo */
 @media (max-width: 700px){
-  .carousel{ max-width: 100%; }
-  .carousel__slide{ flex-basis: 90vw; }
-  .carousel__nav{ width: 40px; height: 40px; }
+  .carousel{ height: 360px; }
+  .carousel-item{ width: 92%; height: calc(100% - 24px); border-radius:18px; }
+  .btn{ display:none; } /* mobile navega por swipe */
+  /* no mobile escondemos os laterais pra caber melhor */
+  .carousel-item.prev,
+  .carousel-item.next,
+  .carousel-item.prev-2,
+  .carousel-item.next-2{ opacity:0; }
 }
 
-
-/* Explore por Tipo */
-
+/* ====== Explore por Tipo ====== */
 .bloco{ margin-top:20px; margin-bottom:6px;}
 .bloco__titulo{
   font-family:'Baloo 2', cursive; color:var(--white);
@@ -240,9 +234,7 @@ body{
 .tipo-card__icon{ font-size:28px}
 .tipo-card__titulo{ font-size:.9rem; font-weight:800}
 
-
-/* Cards dos eventos */
-
+/* ====== Cards dos eventos ====== */
 .cards-grid{
   display:grid; grid-template-columns:repeat(4, 1fr);
   gap:28px; margin-top:8px;
@@ -254,7 +246,6 @@ body{
 }
 
 /* Placeholders */
-
 .ph{
   width:100%; aspect-ratio:16/10; background:var(--paper);
   border-radius:10px; border:2px solid var(--gray);
@@ -267,7 +258,6 @@ body{
 .ph--xl{ width:100%; aspect-ratio:16/8; }
 
 /* Rodapé */
-
 .rodape{
   background:linear-gradient(#c09461, #d8b26a);
   margin-top:24px; padding:24px 0 60px;
@@ -281,21 +271,14 @@ body{
 }
 .cacto{ font-size:28px; opacity:.7}
 
-
-/* Responsividade */
-
+/* ====== Responsividade geral ====== */
 @media (max-width: 1100px){
-  .carousel__nav{ height:220px }
   .tipos-grid{ grid-template-columns:repeat(3, 1fr) }
   .cards-grid{ grid-template-columns:repeat(2, 1fr) }
 }
 @media (max-width: 700px){
   .topbar{ justify-content:center}
   .topbar__menu{ display:none}
-  .carousel{ grid-template-columns:1fr; }
-  .carousel__nav{ display:none }
-  .carousel__viewport{ padding:16px }
-  .evento-titulo{ font-size:22px }
   .tipos-grid{ grid-template-columns:repeat(2, 1fr) }
   .cards-grid{ grid-template-columns:1fr }
 }
