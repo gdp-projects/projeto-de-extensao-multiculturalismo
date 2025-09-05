@@ -1,0 +1,20 @@
+/* Rodapé */
+.rodape{
+  background:linear-gradient(#c09461, #d8b26a);
+  margin-top:24px; padding:24px 0 60px;
+  position:relative;
+}
+
+.rodape__inner{ 
+    display:flex; align-items:center; justify-content:space-between
+}
+
+.social a{
+  display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center;
+  border-radius:6px; background:#b8864b; color:#fff; text-decoration:none; margin-right:10px;
+  box-shadow:var(--shadow);
+}
+
+.cacto{ 
+    font-size:28px; opacity:.7
+}
