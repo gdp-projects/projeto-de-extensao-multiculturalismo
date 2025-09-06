@@ -1,16 +1,1 @@
-/* Faixa superior decorativa */
-.faixa-superior{
-  background:linear-gradient(to bottom, #d8b26a, #c09461);
-  height:110px;
-  position:relative;
-  box-shadow:var(--shadow);
-}
 
-.faixa-superior__pattern{
-  position:absolute; inset:0;
-  opacity:.15;
-  background:
-    radial-gradient(circle at 10% 70%, #fff 0 2px, transparent 3px) 0 0/80px 80px,
-    radial-gradient(circle at 30% 30%, #fff 0 2px, transparent 3px) 40px 0/80px 80px;
-  pointer-events:none;
-}
