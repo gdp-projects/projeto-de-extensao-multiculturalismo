@@ -3,7 +3,7 @@ import pool from '../config/db/postgreSQL.js';
 const updateUsuario = async (id, usuario) => {
     const { nome, sobrenome, data_nascimento } = usuario;
     const res = await pool.query(
-        'UPDATE usuarios SET nome = $1, sobrenome = $2, data_nascimento = $3 WHERE id_usuario = $4 RETURNING *',
+        'UPDATE usuarios SET primeiro_nome = $1, sobrenome = $2, data_nascimento = $3 WHERE id_usuario = $4 RETURNING *',
         [nome, sobrenome, data_nascimento, id]
     );
     return res.rows[0];
@@ -50,11 +50,19 @@ const updateSenha = async (id, senha) => {
 }
 
 const upgradeUsuarioToPro = async (id) => {
-    const res = await pool.query(
-        'UPDATE usuarios SET isPro = true WHERE id_usuario = $1 RETURNING *',
-        [id]
-    );
-    return res.rows[0];
+    const usuarioAtual = await pool.query('SELECT isPro FROM usuarios WHERE id_usuario = $1', [id]);
+    if (usuarioAtual.rows.length === 0) {
+        return null; // Usuário não encontrado
+    }
+    if (usuarioAtual.rows[0].ispro) {
+        return usuarioAtual.rows[0]; // Já é Pro, retorna o usuário atual
+    } else {
+        const res = await pool.query(
+            'UPDATE usuarios SET isPro = true WHERE id_usuario = $1 RETURNING *',
+            [id]
+        );
+        return res.rows[0];
+    }
 }
 
 const transformarUsuarioEmOrganizador = async (id) => {
@@ -94,6 +102,8 @@ export default {
     updateTelefone,
     updateFoto,
     updateSenha,
+    updateNomeUsuario,
+    updateEmail,
     upgradeUsuarioToPro,
     transformarUsuarioEmOrganizador,
     verificarUsuario,
