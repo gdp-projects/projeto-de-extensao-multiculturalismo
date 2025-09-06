@@ -22,6 +22,7 @@ body{
   background-color:var(--sand-2);
 }
 
+
 /* Container central */
 .container{width:min(1200px, 92%); margin-inline:auto}
 
@@ -86,6 +87,23 @@ body{
   color: #6a3c1c;
   opacity: .9;
   font-size: .95rem;
+<<<<<<< Updated upstream
+=======
+}
+
+.topbar__link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #6a3c1c;
+  background: linear-gradient(#eee, #ccc);
+  cursor: pointer;
+>>>>>>> Stashed changes
 }
 
 .topbar__link:hover {
