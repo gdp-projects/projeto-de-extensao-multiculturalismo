@@ -5,7 +5,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
   const pass = document.getElementById("password").value;
 
   if (user === "usuario1" && pass === "senha1") {
-    window.location.href = "perfil.html"; // Redireciona para a página de perfil
+    window.location.href = "../pages/perfil_usuario/inicio.html"; // Redireciona para a página de perfil
   } else {
     alert("Usuário ou senha incorretos!");
   }
