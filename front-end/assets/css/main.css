@@ -87,8 +87,6 @@ body{
   color: #6a3c1c;
   opacity: .9;
   font-size: .95rem;
-<<<<<<< Updated upstream
-=======
 }
 
 .topbar__link:hover {
@@ -103,7 +101,6 @@ body{
   border: 2px solid #6a3c1c;
   background: linear-gradient(#eee, #ccc);
   cursor: pointer;
->>>>>>> Stashed changes
 }
 
 .topbar__link:hover {
