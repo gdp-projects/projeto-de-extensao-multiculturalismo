@@ -67,59 +67,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const codeInput = document.getElementById('code');
   const codeMessage = document.getElementById('codeMessage');
 
-  let confirmationResult = null;
+  let generatedCode = null;
 
   if (verifyForm) {
-    // Cria reCAPTCHA do Firebase
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-      size: 'normal',
-      callback: () => console.log('✅ reCAPTCHA verificado')
-    });
-    recaptchaVerifier.render();
-
     verifyForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const phone = phoneInput.value.trim();
 
-      auth.signInWithPhoneNumber(phone, window.recaptchaVerifier)
-        .then((result) => {
-          confirmationResult = result;
-          verifyMessage.textContent = "📲 Código enviado! Verifique seu SMS.";
-          verifyMessage.style.color = "green";
-          codeForm.style.display = "block";
-        })
-        .catch((error) => {
-          console.error(error);
-          verifyMessage.textContent = "❌ Erro: " + error.message;
-          verifyMessage.style.color = "red";
-        });
+      // Validação simples de telefone
+      const phoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
+      if (phoneRegex.test(phone)) {
+        // Gera código aleatório de 6 dígitos
+        generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+        verifyMessage.textContent = `📲 Código enviado para ${phone}. (Simulação: ${generatedCode})`;
+        verifyMessage.style.color = "green";
+
+        codeForm.style.display = "block";
+      } else {
+        verifyMessage.textContent = "❌ Número de telefone inválido.";
+        verifyMessage.style.color = "red";
+      }
     });
   }
 
   if (codeForm) {
     codeForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const code = codeInput.value.trim();
+      const enteredCode = codeInput.value.trim();
 
-      if (!confirmationResult) return;
-
-      confirmationResult.confirm(code)
-        .then((result) => {
-          const user = result.user;
-          codeMessage.textContent = "✅ Usuário verificado: " + user.phoneNumber;
-          codeMessage.style.color = "green";
-          console.log("Usuário logado:", user);
-        })
-        .catch((error) => {
-          console.error(error);
-          codeMessage.textContent = "❌ Código inválido.";
-          codeMessage.style.color = "red";
-        });
+      if (enteredCode === generatedCode) {
+        codeMessage.textContent = "✅ Usuário verificado com sucesso!";
+        codeMessage.style.color = "green";
+      } else {
+        codeMessage.textContent = "❌ Código incorreto.";
+        codeMessage.style.color = "red";
+      }
     });
   }
 });
-
-  
   // aplica configs salvas
   const temaSalvo = localStorage.getItem('tema');
   const fonteSalva = localStorage.getItem('fonte');
