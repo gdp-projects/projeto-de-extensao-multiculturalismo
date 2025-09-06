@@ -1,16 +1,32 @@
-/* Faixa superior decorativa */
-.faixa-superior{
-  background:linear-gradient(to bottom, #d8b26a, #c09461);
-  height:110px;
-  position:relative;
-  box-shadow:var(--shadow);
+<<<<<<< Updated upstream
+
+=======
+.faixa-superior {
+  width: 100%;
+  min-height: 100px;
+  height: clamp(100px, 18vh, 160px);
+  position: relative;
+
+  background: url("../../images/header_imagem.jpg") no-repeat center/contain;
+  background-color: #D9B36A; /* cor igual da borda da imagem */
+
+  box-shadow: var(--shadow);
 }
 
-.faixa-superior__pattern{
-  position:absolute; inset:0;
+/* padrão decorativo opcional */
+.faixa-superior__pattern {
+  position:absolute;
+  inset:0;
   opacity:.15;
-  background:
-    radial-gradient(circle at 10% 70%, #fff 0 2px, transparent 3px) 0 0/80px 80px,
-    radial-gradient(circle at 30% 30%, #fff 0 2px, transparent 3px) 40px 0/80px 80px;
   pointer-events:none;
 }
+
+/* Ajuste mobile */
+@media (max-width: 768px) {
+  .faixa-superior {
+    height: 90px;
+    background-size: contain; /* mantém imagem visível sem cortar */
+    background-position: center;
+  }
+}
+>>>>>>> Stashed changes
