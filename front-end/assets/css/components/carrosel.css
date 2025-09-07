@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root{
   --sand-1:#d8b26a; 
   --sand-2:#c09461; 
@@ -13,6 +14,8 @@
   --slide-offset: clamp(200px, 16vw, 320px);
 }
 
+=======
+>>>>>>> e74cde88d323946e3f034c07762989c974b08a2e
 /* ================== CARROSSEL ================== */
 .carousel {
   position: relative;
@@ -68,6 +71,10 @@
   opacity:.9;
   z-index:4;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e74cde88d323946e3f034c07762989c974b08a2e
 .carousel-item.prev{
   transform: translate(calc(-50% - var(--slide-offset)), -50%) scale(.92) rotateY(5deg);
   opacity:.9;
@@ -80,6 +87,10 @@
   opacity:.55;
   z-index:3;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e74cde88d323946e3f034c07762989c974b08a2e
 .carousel-item.prev-2{
   transform: translate(calc(-50% - calc(var(--slide-offset)*2)), -50%) scale(.84) rotateY(6deg);
   opacity:.55;
@@ -109,6 +120,10 @@
   z-index:6;
   transition:filter .2s ease, background .2s ease;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e74cde88d323946e3f034c07762989c974b08a2e
 .btn:hover{ filter:brightness(1.03); }
 .btn.prev-btn{ left:20px; }
 .btn.next-btn{ right:20px; }
@@ -123,17 +138,29 @@
   gap:8px;
   z-index:7;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e74cde88d323946e3f034c07762989c974b08a2e
 .dot{
   width:12px; height:12px; border-radius:50%;
   background:#bdbdbd;
   cursor:pointer; transition:background .25s ease, transform .25s ease;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e74cde88d323946e3f034c07762989c974b08a2e
 .dot.active{ background:#333; transform:scale(1.05); }
 
 /* ===== Responsivo do carrossel ===== */
 @media (max-width: 900px){
   :root{ --slide-offset: clamp(160px, 18vw, 240px); }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e74cde88d323946e3f034c07762989c974b08a2e
 @media (max-width: 700px){
   .carousel{ height: 360px; }
   .carousel-item{ width: 92%; height: calc(100% - 24px); border-radius:18px; }

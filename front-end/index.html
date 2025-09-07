@@ -7,20 +7,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/components/footer.css">
+  <link rel="stylesheet" href="assets/css/components/header.css">
+  <link rel="stylesheet" href="assets/css/components/carrosel.css">
+
   <link rel="stylesheet" href="assets/css/main.css" />
+<<<<<<< HEAD
   <link rel="stylesheet" href="assets/css/components/carrosel.css">
   
+=======
+  <link rel="stylesheet" href="assets/css/components/header.css"/>
+  <link rel="stylesheet" href="assets/css/components/footer.css"/>
+  <link rel="stylesheet" href="assets/css/components/carrosel.css"/>
+>>>>>>> e74cde88d323946e3f034c07762989c974b08a2e
 </head>
 <body>
-  <header class="faixa-superior" aria-hidden="true">
-    <div class="faixa-superior__pattern"></div>
-  </header>
+  <!-- Header decorativo -->
+  <header class="faixa-superior" aria-hidden="true"></header>
 
   <div class="topbar container">
     <nav class="topbar__menu" aria-label="Menu do usuário">
-      <a href="registro.html" class="topbar__link">Criar evento</a>
-      <a href="registro.html" class="topbar__link">Meus eventos</a>
-      <a href="registro.html" class="topbar__link">Meus ingressos</a>
+      <a href="pages/registro.html" class="topbar__link">Criar evento</a>
+      <a href="pages/registro.html" class="topbar__link">Meus eventos</a>
+      <a href="pages/registro.html" class="topbar__link">Meus ingressos</a>
     </nav>
     <button class="avatar" aria-label="Abrir perfil"></button>
   </div>
@@ -41,30 +50,26 @@
     </div>
   </section>
 
-<!-- ================= CARROSSEL ================= -->
+  <!-- CARROSSEL  -->
+  <div class="carousel">
+    <div class="carousel-track">
+      <div class="carousel-item"><img src="assets/images/imagem_vaqueijada_serrinha.jpg" alt="Evento 1"></div>
+      <div class="carousel-item"><img src="assets/images/micareta_feira.jpg" alt="Evento 2"></div>
+      <div class="carousel-item"><img src="assets/images/sao_joao_serrinha.jpeg" alt="Evento 3"></div>
+      <div class="carousel-item"><img src="assets/images/casa_nois_evento.png" alt="Evento 4"></div>
+      <div class="carousel-item"><img src="assets/images/tela_preta.jpg" alt="Evento 5"></div>
+      <div class="carousel-item"><img src="assets/images/tela_preta.jpg" alt="Evento 6"></div>
+      <div class="carousel-item"><img src="assets/images/tela_preta.jpg" alt="Evento 7"></div>
+      <div class="carousel-item"><img src="assets/images/tela_preta.jpg" alt="Evento 8"></div>
+    </div>
 
- <div class="carousel">
-  <div class="carousel-track">
-    <div class="carousel-item"><img src="assets/images/imagem_vaqueijada_serrinha.jpg" alt="Evento 1"></div>
-    <div class="carousel-item"><img src="assets/images/micareta_feira.jpg" alt="Evento 2"></div>
-    <div class="carousel-item"><img src="assets/images/sao_joao_serrinha.jpeg" alt="Evento 3"></div>
-    <div class="carousel-item"><img src="assets/images/casa_nois_evento.png" alt="Evento 4"></div>
-    <div class="carousel-item"><img src="assets/images/tela_preta.jpg" alt="Evento 5"></div>
-    <div class="carousel-item"><img src="assets/images/tela_preta.jpg" alt="Evento 6"></div>
-    <div class="carousel-item"><img src="assets/images/tela_preta.jpg" alt="Evento 7"></div>
-    <div class="carousel-item"><img src="assets/images/tela_preta.jpg" alt="Evento 8"></div>
+    <!-- Botões -->
+    <button class="btn prev-btn">&#10094;</button>
+    <button class="btn next-btn">&#10095;</button>
+
+    <!-- Indicadores -->
+    <div class="indicators"></div>
   </div>
-
-  <!-- Botões -->
-  <button class="btn prev-btn">&#10094;</button>
-  <button class="btn next-btn">&#10095;</button>
-
-  <!-- Indicadores -->
-  <div class="indicators"></div>
-</div>
-
-
-
 
   <section class="container bloco">
     <h2 class="bloco__titulo">EXPLORE POR TIPO</h2>
@@ -99,36 +104,20 @@
   <section class="container bloco">
     <h2 class="bloco__titulo">EVENTOS HOJE</h2>
     <div class="cards-grid">
-      <article class="card">
-        <div class="ph" data-ph="360x220"></div>
-      </article>
-      <article class="card">
-        <div class="ph" data-ph="360x220"></div>
-      </article>
-      <article class="card">
-        <div class="ph" data-ph="360x220"></div>
-      </article>
-      <article class="card">
-        <div class="ph" data-ph="360x220"></div>
-      </article>
+      <article class="card"><div class="ph" data-ph="360x220"></div></article>
+      <article class="card"><div class="ph" data-ph="360x220"></div></article>
+      <article class="card"><div class="ph" data-ph="360x220"></div></article>
+      <article class="card"><div class="ph" data-ph="360x220"></div></article>
     </div>
   </section>
 
   <section class="container bloco">
     <h2 class="bloco__titulo">EVENTOS HOJE</h2>
     <div class="cards-grid">
-      <article class="card">
-        <div class="ph" data-ph="360x220"></div>
-      </article>
-      <article class="card">
-        <div class="ph" data-ph="360x220"></div>
-      </article>
-      <article class="card">
-        <div class="ph" data-ph="360x220"></div>
-      </article>
-      <article class="card">
-        <div class="ph" data-ph="360x220"></div>
-      </article>
+      <article class="card"><div class="ph" data-ph="360x220"></div></article>
+      <article class="card"><div class="ph" data-ph="360x220"></div></article>
+      <article class="card"><div class="ph" data-ph="360x220"></div></article>
+      <article class="card"><div class="ph" data-ph="360x220"></div></article>
     </div>
   </section>
 
