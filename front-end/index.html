@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tá viajando é?</title>
+  <title></title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="assets/css/components/header.css"/>
   <link rel="stylesheet" href="assets/css/components/footer.css"/>
   <link rel="stylesheet" href="assets/css/components/carrosel.css"/>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <!-- Header decorativo -->
@@ -34,14 +35,14 @@
 
     <form class="search" role="search" aria-label="Busca de eventos">
       <input class="search__input" type="search" placeholder="Pesquisar eventos" aria-label="Pesquisar" />
-      <button class="search__btn" type="submit" aria-label="Buscar">🔍</button>
+      <button class="search__btn" type="submit" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 
     <div class="chips" role="list" aria-label="Filtros rápidos">
-      <button class="chip" role="listitem">📍 Localização</button>
-      <button class="chip" role="listitem">🍳 Culinária</button>
-      <button class="chip chip--active" role="listitem">🏀 Esportes</button>
-      <button class="chip" role="listitem">🎵 Música</button>
+      <button class="chip" role="listitem"><i class="fa-solid fa-location-dot"></i> Perto de você</button>
+      <button class="chip" role="listitem"><i class="fa-solid fa-users"></i> Mais procurados</button>
+      <button class="chip chip--active" role="listitem"><i class="fa-solid fa-handshake"></i> Novidades</button>
+      <button class="chip" role="listitem"><i class="fa-solid fa-gift"></i> Para você</button>
     </div>
   </section>
 
@@ -70,28 +71,23 @@
     <h2 class="bloco__titulo">EXPLORE POR TIPO</h2>
     <div class="tipos-grid">
       <button class="tipo-card" aria-label="Esporte">
-        <span class="tipo-card__icon">🏅</span>
         <span class="tipo-card__titulo">ESPORTE</span>
       </button>
       <button class="tipo-card" aria-label="Cultura">
-        <span class="tipo-card__icon">🕺</span>
+
         <span class="tipo-card__titulo">CULTURA</span>
       </button>
       <button class="tipo-card" aria-label="Música">
-        <span class="tipo-card__icon">🎶</span>
         <span class="tipo-card__titulo">MÚSICA</span>
       </button>
       <button class="tipo-card" aria-label="Exemplo">
-        <span class="tipo-card__icon">🛡️</span>
-        <span class="tipo-card__titulo">EXEMPLO</span>
+        <span class="tipo-card__titulo">DANÇA</span>
       </button>
       <button class="tipo-card" aria-label="Tradição">
-        <span class="tipo-card__icon">🐎</span>
         <span class="tipo-card__titulo">TRADIÇÃO</span>
       </button>
       <button class="tipo-card" aria-label="Exemplo 2">
-        <span class="tipo-card__icon">💃</span>
-        <span class="tipo-card__titulo">EXEMPLO</span>
+        <span class="tipo-card__titulo">OUTROS</span>
       </button>
     </div>
   </section>
@@ -99,34 +95,47 @@
   <section class="container bloco">
     <h2 class="bloco__titulo">EVENTOS HOJE</h2>
     <div class="cards-grid">
-      <article class="card"><div class="ph" data-ph="360x220"></div></article>
-      <article class="card"><div class="ph" data-ph="360x220"></div></article>
-      <article class="card"><div class="ph" data-ph="360x220"></div></article>
-      <article class="card"><div class="ph" data-ph="360x220"></div></article>
+      <article class="card"><div class="ph" data-ph=""></div></article>
+      <article class="card"><div class="ph" data-ph=""></div></article>
+      <article class="card"><div class="ph" data-ph=""></div></article>
+      <article class="card"><div class="ph" data-ph=""></div></article>
     </div>
   </section>
 
   <section class="container bloco">
-    <h2 class="bloco__titulo">EVENTOS HOJE</h2>
+    <h2 class="bloco__titulo">EVENTOS PROXIMOS</h2>
     <div class="cards-grid">
-      <article class="card"><div class="ph" data-ph="360x220"></div></article>
-      <article class="card"><div class="ph" data-ph="360x220"></div></article>
-      <article class="card"><div class="ph" data-ph="360x220"></div></article>
-      <article class="card"><div class="ph" data-ph="360x220"></div></article>
+      <article class="card"><div class="ph" data-ph=""></div></article>
+      <article class="card"><div class="ph" data-ph=""></div></article>
+      <article class="card"><div class="ph" data-ph=""></div></article>
+      <article class="card"><div class="ph" data-ph=""></div></article>
     </div>
   </section>
 
-  <footer class="rodape">
-    <div class="container rodape__inner">
-      <div class="social">
-        <a href="#" aria-label="X / Twitter">✖</a>
-        <a href="#" aria-label="Instagram">📸</a>
-        <a href="#" aria-label="YouTube">▶</a>
-        <a href="#" aria-label="LinkedIn">in</a>
-      </div>
-      <div class="cacto" aria-hidden="true">🌵</div>
+<footer class="footer">
+  <div class="footer-container">
+    <p class="footer-logo">Nome do site</p>
+
+    <!-- Navegação -->
+    <nav class="footer-nav">
+      <a href="#">Início</a>
+      <a href="#">Sobre</a>
+      <a href="#">Contato</a>
+      <a href="#">Política de Privacidade</a>
+    </nav>
+
+    <!-- Redes sociais -->
+    <div class="footer-social">
+      <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="#" target="_blank"><i class="fa-solid fa-envelope"></i></a>
     </div>
-  </footer>
+
+    <p class="footer-copy">© 2025 Nome do site. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
 
   <script src="assets/js/main.js"></script>
 </body>

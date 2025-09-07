@@ -6,7 +6,7 @@
   position: relative;
 
   background: url("../../images/header_imagem.jpg") no-repeat center/contain;
-  background-color: #D9B36A; /* cor igual da borda da imagem */
+  background-color: #D9B36A; 
 
   box-shadow: var(--shadow);
 }

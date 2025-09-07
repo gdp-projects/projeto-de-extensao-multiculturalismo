@@ -6,7 +6,13 @@
 :root{
   --bg-a: #f6e3c5;
   --bg-b: #e7b77a;
+/* =========================
+   Topbar
+   ========================= */
   --topbar: #a85d2d;
+/* =========================
+   Sidebar
+   ========================= */
   --sidebar: #c98c5d;
   --card-shadow: rgba(39,30,25,0.12);
   --accent: #d1495b;
@@ -128,6 +134,9 @@ body{
 .sidebar-footer{color:rgba(255,255,255,0.9); text-align:center; padding-top:6px; font-size:0.85rem}
 
 /* Main area */
+/* =========================
+   Área principal (Main)
+   ========================= */
 .main{
   flex:1;
   padding:28px 36px;
@@ -137,6 +146,9 @@ body{
 }
 
 /* Welcome box */
+/* =========================
+   Welcome Box
+   ========================= */
 .welcome-box{
   display:flex;
   gap:20px;
@@ -171,6 +183,9 @@ body{
 .btn-tertiary{background:#00798c;color:#fff}
 
 /* Cards grid */
+/* =========================
+   Cards
+   ========================= */
 .cards{display:grid; grid-template-columns: repeat(2, 1fr); gap:22px;}
 .card{
   background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.85));
@@ -218,6 +233,9 @@ body{
 }
 .filter{background:white}
 .events-grid{grid-auto-rows:1fr}
+/* =========================
+   Eventos
+   ========================= */
 .event-card .card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .date{font-weight:700;font-size:1.35rem;color:var(--topbar);text-align:center}
 .badge{padding:6px 10px;border-radius:999px;font-weight:600;font-size:0.75rem;color:white}
@@ -229,6 +247,9 @@ body{
 .btn-small.ghost{background:transparent;color:var(--muted);border:1px solid rgba(0,0,0,0.06)}
 
 /* Perfil */
+/* =========================
+   Perfil
+   ========================= */
 .profile-grid{display:grid;grid-template-columns:320px 1fr;gap:22px}
 .profile-summary{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
 .avatar-large img{width:120px;height:120px;border-radius:14px;object-fit:cover}
@@ -238,6 +259,9 @@ body{
 
 
 /* Formulários */
+/* =========================
+   Formulários
+   ========================= */
 .profile-form input, .profile-form textarea, .profile-form select{
   width:100%;
   padding:12px;
@@ -251,6 +275,9 @@ body{
 .ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:12px 14px;border-radius:10px;font-weight:700}
 
 /* Floating/back buttons */
+/* =========================
+   Botões Flutuantes e de Voltar
+   ========================= */
 .floating-btn{
   position:fixed;
   right:24px;
@@ -287,6 +314,9 @@ body{
   .sidebar.open{display:flex}
 }
 /* ===== Temas de acessibilidade ===== */
+/* =========================
+   Temas de Acessibilidade
+   ========================= */
 body.tema-claro {
   background: linear-gradient(120deg, #f6e3c5, #e7b77a);
   color: var(--text);
@@ -325,6 +355,9 @@ body.tema-contraste .card {
 }
 
 /* ===== Fontes ===== */
+/* =========================
+   Fontes - Acessibilidade
+   ========================= */
 body.fonte-pequena { font-size: 14px; }
 body.fonte-media { font-size: 16px; }
 body.fonte-grande { font-size: 20px; }
