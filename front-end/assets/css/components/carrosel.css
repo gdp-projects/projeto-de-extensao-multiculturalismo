@@ -1,3 +1,18 @@
+:root{
+  --sand-1:#d8b26a; 
+  --sand-2:#c09461; 
+  --sand-3:#917758; 
+  --beige:#d7c095;  
+  --paper:#e3e3e1;  
+  --gray:#d9d9d9;   
+  --ink:#2b2016;    
+  --white:#ffffff;
+  --shadow:0 6px 18px rgba(0,0,0,.12);
+
+  /* controls do carrossel */
+  --slide-offset: clamp(200px, 16vw, 320px);
+}
+
 /* ================== CARROSSEL ================== */
 .carousel {
   position: relative;
