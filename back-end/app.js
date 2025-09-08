@@ -14,7 +14,7 @@ const PORT = 8080;
 // Configuração do CORS
 app.use(cors({
   origin: 'http://127.0.0.1:5500',
-  credentials: true
+  credentials: '*'
 }));
 
 // Middlewares para o Express entender JSON
@@ -22,7 +22,6 @@ app.use(express.json());
 
 // Middlewares para o Express entender formulários
 app.use(express.urlencoded({ extended: true }));
-
 
 // Usar as rotas
 app.use('/usuarios', usuarios);
@@ -39,3 +38,7 @@ pool.connect()
   .catch((err) => {
     console.error('Erro ao conectar ao banco de dados PostgreSQL', err);
   });
+
+app.listen(PORT, () => {
+  console.log(`Server rodando, http://localhost:${PORT}`);
+});
