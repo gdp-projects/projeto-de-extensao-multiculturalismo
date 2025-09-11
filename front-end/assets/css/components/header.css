@@ -14,3 +14,32 @@
     radial-gradient(circle at 30% 30%, #fff 0 2px, transparent 3px) 40px 0/80px 80px;
   pointer-events:none;
 }
+
+.faixa-superior {
+  width: 100%;
+  min-height: 100px;
+  height: clamp(100px, 18vh, 160px);
+  position: relative;
+
+  background: url("../../images/header_imagem.jpg") no-repeat center/contain;
+  background-color: #D9B36A; 
+
+  box-shadow: var(--shadow);
+}
+
+/* padrão decorativo opcional */
+.faixa-superior__pattern {
+  position:absolute;
+  inset:0;
+  opacity:.15;
+  pointer-events:none;
+}
+
+/* Ajuste mobile */
+@media (max-width: 768px) {
+  .faixa-superior {
+    height: 90px;
+    background-size: contain; /* mantém imagem visível sem cortar */
+    background-position: center;
+  }
+}

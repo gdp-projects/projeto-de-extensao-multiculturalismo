@@ -1,0 +1,140 @@
+<!-- ===== eventos.html ===== -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="perfil.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <!-- Topbar -->
+<header class="topbar">
+   <div class="topbar-left">
+    <div class="logo">
+     <span>
+      Nome do site
+     </span>
+    </div>
+   </div>
+  </header>
+  <div class="app">
+   <!-- Sidebar de navegação -->
+    <aside class="sidebar">
+    <nav>
+     <a class="nav-item" href="inicio.html">
+      <i class="fa-solid fa-house">
+      </i>
+      Início
+     </a>
+     <a class="nav-item active" href="eventos.html">
+      <i class="fa-solid fa-calendar-days">
+      </i>
+      Meus Eventos
+     </a>
+     <a class="nav-item" href="perfil.html">
+      <i class="fa-solid fa-user-pen">
+      </i>
+      Perfil
+     </a>
+     <a class="nav-item" href="relatorios.html">
+      <i class="fa-solid fa-chart-line">
+      </i>
+      Relatórios
+     </a>
+     <a class="nav-item" href="configuracoes.html">
+      <i class="fa-solid fa-gear">
+      </i>
+      Configurações
+     </a>
+     <a class="nav-item" href="acessibilidade.html">
+      <i class="fa-solid fa-universal-access">
+      </i>
+      Acessibilidade
+     </a>
+          </nav>
+      <!-- Fim da navegação -->
+   </aside>
+   <!-- Conteúdo principal -->
+    <main class="main">
+    <section class="panel-top">
+     <h2>
+      Meus Eventos
+     </h2>
+     <div class="panel-actions">
+      <input aria-label="Pesquisar eventos" class="search" placeholder="Pesquisar evento..."/>
+      <select class="filter">
+       <option value="all">
+        Todos
+       </option>
+       <option value="online">
+        Online
+       </option>
+       <option value="presencial">
+        Presencial
+       </option>
+      </select>
+     </div>
+    </section>
+    <section class="cards events-grid">
+     <article class="card event-card">
+      <div class="card-head">
+       <span class="badge online">
+        Online
+       </span>
+       <div class="date">
+        12
+        <small>
+         Set
+        </small>
+       </div>
+      </div>
+      <h3>
+       Workshop UX
+      </h3>
+      <p>
+       Aprenda fundamentos de UI/UX e prototipação rápida.
+      </p>
+      <div class="event-meta">
+       <div>
+        <i class="fa-solid fa-users">
+        </i>
+        0 inscritos
+       </div>
+       <div>
+        <i class="fa-solid fa-ticket">
+        </i>
+        0 ingressos
+       </div>
+      </div>
+      <div class="card-actions">
+       <a class="btn-small" href="#">
+        <i class="fa-solid fa-pen">
+        </i>
+        Editar
+       </a>
+       <a class="btn-small ghost" href="#">
+        <i class="fa-solid fa-chart-simple">
+        </i>
+        Métricas
+       </a>
+      </div>
+     </article>
+    </section>
+   </main>
+  </div>
+  <a class="back-btn" href="../../index.html" title="Voltar para Início">
+   <i class="fa-solid fa-arrow-left">
+   </i>
+  </a>
+  <a class="floating-btn" href="#" title="Criar novo evento">
+   <i class="fa-solid fa-plus">
+   </i>
+  </a>
+  <script src="perfil.js">
+  </script>
+ </body>
+</html>
