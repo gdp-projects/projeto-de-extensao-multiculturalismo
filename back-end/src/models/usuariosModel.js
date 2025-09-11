@@ -29,11 +29,17 @@ const loginUsuario = async (nome_usuario, senha) => {
     return res.rows[0];
 }
 
+const deleteUsuario = async (id, nome_usuario, senha) => {
+    const res = await pool.query('DELETE FROM usuarios WHERE nome_usuario = $1 AND senha = $2 AND id = $3', [nome_usuario, senha, id])
+    return res.rowCount
+}
+
 
 export default {
     getAllUsuarios,
     getUsuarioById,
     getUsuarioByNomeUsuario,
     createUsuario,
-    loginUsuario
+    loginUsuario,
+    deleteUsuario
 };

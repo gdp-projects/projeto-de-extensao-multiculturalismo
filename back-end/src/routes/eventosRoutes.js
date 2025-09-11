@@ -12,4 +12,7 @@ router.get('/', eventosController.getEventos);
 // Buscar por ID
 router.get('/:id', eventosController.getEventoById);
 
+// Buscar por nome
+router.get('/', eventosController.getEventoByName)
+
 export default router;

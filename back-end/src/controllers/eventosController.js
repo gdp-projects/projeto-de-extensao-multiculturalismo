@@ -25,6 +25,20 @@ const getEventoById = async (req, res) => {
     }
 };
 
+const getEventoByName = async (req, res) => {
+    const nome_evento = req.query.nome_evento
+    try {
+        const eventos = await eventosModel.getEventoByName(nome_evento)
+        if(eventos.length === 0) {
+            return res.status(404).json({ error: "Evento não encontrado" })
+        }
+        res.status(200).json(eventos)
+    } catch (error) {
+        res.status(500).json({ error: "Erro ao tentar pesquisar eventos" })
+        console.log(error)
+    }
+}
+
 const createEvento = async (req, res) => {
     const {foto_local, data, hora, nome_evento, is_online, link, categoria, status} = req.body;
     const evento = {foto_local, data, hora, nome_evento, is_online, link, categoria, status};
@@ -41,4 +55,6 @@ const createEvento = async (req, res) => {
 export default {
     createEvento, 
     getEventos, 
-    getEventoById};
+    getEventoById,
+    getEventoByName
+};

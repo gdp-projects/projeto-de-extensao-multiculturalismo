@@ -19,7 +19,13 @@ const getEventoById = async (id) => {
     return res.rows[0];
 }
 
+const getEventoByName = async (nome_evento) => {
+    const res = await pool.query("SELECT * FROM eventos Where nome_evento ILIKE $1 ORDER BY data DESC", [`%${nome_evento}%`])
+    return res.rows
+}
+
 export default {createEvento,
     getAllEventos,
-    getEventoById
+    getEventoById,
+    getEventoByName
 };
