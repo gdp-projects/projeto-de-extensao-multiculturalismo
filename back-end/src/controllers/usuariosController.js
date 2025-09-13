@@ -2,6 +2,7 @@ import usuariosModel from '../models/usuariosModel.js';
 import usuarioModel from '../models/usuariosModel.js';
 import usuariosUpdate from '../models/usuariosUpdate.js';
 
+import jwt from "jsonwebtoken"
 import bcrypt from 'bcrypt'
 
 const getUsuarios = async (req, res) => {
@@ -54,8 +55,9 @@ const loginUsuario = async (req, res) => {
         if(!senhaCorreta) {
             return res.status(401).json({ error: "Senha inválida" });
         };
-        const resultadoLoginUsuario = await usuarioModel.loginUsuario(nome_usuario, usuarioCadastrado.senha); // Realiza login do usuário
-        res.status(200).json(resultadoLoginUsuario);
+        // const resultadoLoginUsuario = await usuarioModel.loginUsuario(nome_usuario, usuarioCadastrado.senha); // Realiza login do usuário
+        const token = jwt.sign({ user: nome_usuario }, secret, { expiresIn: "1h" })
+        res.status(200).json(token);
     } catch (error) {
         res.status(500).json({ error: "Erro ao tentar realizar login" });
         console.log(error);
