@@ -47,20 +47,24 @@ const createUsuario = async (req, res) => {
 const loginUsuario = async (req, res) => {
     const { nome_usuario, senha } = req.body; // Login digitado pelo usuário
     try {
-        const usuarioCadastrado = await usuarioModel.getUsuarioByNomeUsuario(nome_usuario); // Pega as informações do usuário
-        if(!usuarioCadastrado) {
+        const usuario = await usuarioModel.getUsuarioByNomeUsuario(nome_usuario); // Pega as informações do usuário
+        if(!usuario) {
             return res.status(404).json({ error: "Usuário não encontrado" });
         };
-        const senhaCorreta = await bcrypt.compare(senha, usuarioCadastrado.senha); // Compara a senha digitada com o Hash salvo no banco de dados
+        const senhaCorreta = await bcrypt.compare(senha, usuario.senha); // Compara a senha digitada com o Hash salvo no banco de dados
         if(!senhaCorreta) {
             return res.status(401).json({ error: "Senha inválida" });
         };
         // const resultadoLoginUsuario = await usuarioModel.loginUsuario(nome_usuario, usuarioCadastrado.senha); // Realiza login do usuário
-        const token = jwt.sign({ user: nome_usuario }, secret, { expiresIn: "1h" })
+        const token = jwt.sign({ 
+            nome_usuario: usuario.nome_usuario,
+            email: usuario.email,
+            isOrganizer: usuario.isOrganizer
+        }, process.env.JWT_SECRET, { expiresIn: "1h" })
         res.status(200).json(token);
     } catch (error) {
         res.status(500).json({ error: "Erro ao tentar realizar login" });
-        console.log(error);
+        console.error(error);
     };
 }
 
@@ -87,7 +91,7 @@ const deleteUsuario = async (req, res) => {
         res.status(200).json(deletarUsuario);
     } catch (error) {
         res.status(500).json({ error: "Erro ao tentar deletar usuário" });
-        console.log(error);
+        console.error(error);
     };
 }
 

@@ -13,7 +13,7 @@ function autenticarToken(req, res, next) {
             return res.status(403).json({ error: "Token inválido" })
         }
     
-        req.user = usuario
+        req.usuario = usuario
         next();
     })
 }
@@ -22,6 +22,7 @@ function autenticarOrganizador(req, res, next) {
     if(!req.usuario.isOrganizer) {
         return res.status(403).json({ error: "Acesso apenas para organizadores." })
     }
+    next()
 }
 
 export default {

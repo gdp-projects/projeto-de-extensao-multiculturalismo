@@ -5,9 +5,25 @@ const getEventos = async (req, res) => {
         const eventos = await eventosModel.getAllEventos();
         res.status(200).json(eventos);
     } catch (error) {
+        console.error(error)
         res.status(500).json({ error: 'Erro ao obter eventos' });
     }
 };
+
+const getEventoByUserId = async (req, res) => {
+    const id_usuario = parseInt(req.params.id_usuario)
+
+    try {
+        const eventosDoUsuario = await eventosModel.getEventoByUserId(id_usuario)
+        if (evento.length() === 0) {
+            return res.status(404).json({ error: "Nenhum evento encontrado para esse usuário" })
+        }
+        res.status(200).json(eventosDoUsuario)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: "Erro ao obter eventos do usuário "})
+    }
+}
 
 const getEventoById = async (req, res) => {
     const id = parseInt(req.params.id, 10);
@@ -35,7 +51,7 @@ const getEventoByName = async (req, res) => {
         res.status(200).json(eventos)
     } catch (error) {
         res.status(500).json({ error: "Erro ao tentar pesquisar eventos" })
-        console.log(error)
+        console.error(error)
     }
 }
 
@@ -56,5 +72,6 @@ export default {
     createEvento, 
     getEventos, 
     getEventoById,
-    getEventoByName
+    getEventoByName,
+    getEventoByUserId
 };
