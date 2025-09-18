@@ -79,3 +79,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
+// ...código existente...
+
+// Menu Hambúrguer
+document.addEventListener('DOMContentLoaded', function() {
+  const menuBtn = document.getElementById('menuHamburguer');
+  const menuMobile = document.getElementById('menuMobile');
+  if (menuBtn && menuMobile) {
+    menuBtn.addEventListener('click', function() {
+      menuMobile.style.display = menuMobile.style.display === 'block' ? 'none' : 'block';
+    });
+    // Fecha o menu ao clicar em um link
+    menuMobile.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuMobile.style.display = 'none';
+      });
+    });
+  }
+});
