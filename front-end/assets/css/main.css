@@ -1,7 +1,22 @@
+:root {
+  --sand-1: #d8b26a; 
+  --sand-2: #c09461; 
+  --sand-3: #917758; 
+  --beige: #d7c095;  
+  --paper: #e3e3e1;  
+  --gray: #d9d9d9;   
+  --ink: #2b2016;    
+  --white: #ffffff;
+  --shadow: 0 6px 18px rgba(0,0,0,.12);
+
+  /* controls do carrossel */
+  --slide-offset: clamp(200px, 16vw, 320px);
+}
+
+/* Reset */
 * {
   box-sizing: border-box;
 }
-
 html, body {
   margin: 0;
   padding: 0;
@@ -31,7 +46,6 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* padrão decorativo opcional */
 .faixa-superior__pattern {
   position: absolute;
   inset: 0;
@@ -43,7 +57,7 @@ body {
 @media (max-width: 768px) {
   .faixa-superior {
     height: 90px;
-    background-size: contain; /* mantém imagem visível sem cortar */
+    background-size: contain;
     background-position: center;
   }
 }
@@ -52,11 +66,11 @@ body {
 .topbar {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* alinha tudo à direita */
+  justify-content: flex-end; /* mantive a versão que alinha à direita */
   gap: 16px;
-  padding: 14px 20px; /* espaçamento nas laterais */
-  width: 100%;        /* ocupa toda a largura */
-  max-width: 100%;    /* sem limite de container */
+  padding: 14px 20px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .topbar__menu {
@@ -176,7 +190,7 @@ body {
 
 .tipos-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(140px,1fr));
+  grid-template-columns: repeat(6, minmax(140px, 1fr));
   gap: 18px;
   margin-top: 10px;
 }
@@ -251,7 +265,7 @@ body {
 }
 
 @media (max-width: 700px) {
-  .topbar { justify-content: right; }
+  .topbar { justify-content: right; } /* mantive do branch implementando_perfil_usuario */
   .topbar__menu { display: none; }
   .tipos-grid { grid-template-columns: repeat(2, 1fr); }
   .cards-grid { grid-template-columns: 1fr; }
