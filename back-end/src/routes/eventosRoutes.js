@@ -19,4 +19,10 @@ router.get('/', eventosController.getEventoByName)
 // Listar evento por id do usuário
 router.get("/:id_usuario", usuariosMiddleware.autenticarToken, eventosController.getEventoByUserId)
 
+//Deletar por ID
+router.delete('/:id', eventosController.deleteEvento);
+
+//Atualizar evento
+router.put('/:id', eventosController.updateEvento);
+
 export default router;

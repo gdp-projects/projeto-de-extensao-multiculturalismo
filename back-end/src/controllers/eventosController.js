@@ -67,6 +67,35 @@ const createEvento = async (req, res) => {
     }
 }
 
+const deleteEvento = async (req, res) => {
+    const { id } = req.params;
+    try {
+        await eventosModel.deleteEvento(id);
+        res.status(204).end(); // 204 No Content para indicar sucesso sem corpo de resposta
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao deletar evento' });
+    }
+};
+
+const updateEvento = async (req, res) => {
+    const { id } = req.params;
+    const evento = req.body;
+
+    try {
+        const eventoAtualizado = await eventosModel.updateEvento(id, evento);
+
+        if (eventoAtualizado) {
+            res.status(200).json(eventoAtualizado);
+        } else {
+            res.status(404).json({ error: 'Evento não encontrado' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao atualizar evento' });
+    }
+};
+
 
 export default {
     createEvento, 
@@ -74,4 +103,6 @@ export default {
     getEventoById,
     getEventoByName,
     getEventoByUserId
+    deleteEvento,
+    updateEvento
 };
