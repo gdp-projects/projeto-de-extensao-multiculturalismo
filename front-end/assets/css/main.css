@@ -264,9 +264,295 @@ body {
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 700px) {
-  .topbar { justify-content: right; } /* mantive do branch implementando_perfil_usuario */
-  .topbar__menu { display: none; }
-  .tipos-grid { grid-template-columns: repeat(2, 1fr); }
-  .cards-grid { grid-template-columns: 1fr; }
+/* ====== Carrossel Mobile ====== */
+.carrossel-mobile {
+  display: none;
 }
+
+@media (max-width: 768px) {
+  /* Esconde os cards tradicionais */
+  .cards-grid {
+    display: none;
+  }
+
+  /* Mostra o carrossel */
+  .carrossel-mobile {
+    display: block;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .carrossel {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+  }
+
+  .evento {
+    flex: 0 0 auto;
+    width: 180px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+  }
+
+  .evento img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .conteudo {
+    padding: 8px 10px;
+  }
+
+  .evento h3 {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .evento p {
+    font-size: 12px;
+    color: #666;
+  }
+
+  .evento span {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .carrossel::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .carrossel::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 420px) {
+    .evento { width: 160px; }
+    .evento img { height: 90px; }
+  }
+}
+/* ====== Carrossel Desktop ====== */
+.carrossel-desktop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.faixa-eventos {
+  display: flex;
+  gap: 18px;
+  transition: transform 0.4s ease;
+}
+
+.carrossel-desktop .evento {
+  flex: 0 0 260px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.carrossel-desktop .evento img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.carrossel-desktop .conteudo {
+  padding: 10px;
+}
+
+.carrossel-desktop .conteudo h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: #333;
+  font-weight: bold;
+}
+
+.carrossel-desktop .conteudo p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.carrossel-desktop .conteudo span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.seta {
+  background: var(--beige);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  color: #6a3c1c;
+  transition: all 0.2s ease;
+}
+
+.seta:hover {
+  background: #e6d1a3;
+}
+
+.seta i {
+  font-size: 1.2rem;
+}
+
+/* Desktop: mostra o carrossel, esconde grid */
+@media (min-width: 769px) {
+  .cards-grid { display: none; }
+  .carrossel-desktop { display: flex; }
+  .carrossel-mobile { display: none; }
+}
+
+/* Mobile: mantém o antigo carrossel de toque */
+@media (max-width: 768px) {
+  .carrossel-desktop { display: none; }
+}
+
+/* ====== Carrossel Desktop ====== */
+.carrossel-desktop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 0 50px;
+  overflow: visible; /* garante que as setas fiquem visíveis */
+}
+
+.faixa-eventos {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE e Edge antigos */
+  transition: transform 0.4s ease;
+}
+
+.faixa-eventos::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+
+
+.carrossel-desktop .evento {
+  flex: 0 0 260px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.carrossel-desktop .evento img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.carrossel-desktop .conteudo {
+  padding: 10px;
+}
+
+.carrossel-desktop .conteudo h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: #333;
+  font-weight: bold;
+}
+
+.carrossel-desktop .conteudo p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.carrossel-desktop .conteudo span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #000;
+}
+
+/* ====== Setas ====== */
+.seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: var(--beige);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  color: #6a3c1c;
+  transition: all 0.25s ease;
+}
+
+.seta:hover {
+  background: #e6d1a3;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.seta-esquerda {
+  left: 10px;
+}
+
+.seta-direita {
+  right: 10px;
+}
+
+/* ====== Breakpoints ====== */
+
+/* Desktop/tablet: mostra o carrossel desktop */
+@media (min-width: 769px) {
+  .cards-grid { display: none; }
+  .carrossel-desktop { display: flex; }
+  .carrossel-mobile { display: none; }
+}
+
+/* Mobile: oculta carrossel desktop e setas */
+@media (max-width: 768px) {
+  .carrossel-desktop,
+  .seta-esquerda,
+  .seta-direita {
+    display: none !important;
+  }
+}
+
+
