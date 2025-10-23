@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Novo Evento</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="criarevento.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <button type="button" id="btn-voltar" class="back-button">
+            <i class="material-icons">arrow_back</i>
+        </button>
+        
+        <h1>Criar Evento Presencial</h1>
+        
+        <div class="user-profile">
+            <span>JP</span>
+        </div>
+    </header>
+
+    <main class="form-container">
+        <form id="event-form">
+            
+            <section class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">article</i>
+                    <h2>1. Informações básicas</h2>
+                </div>
+                <p>Adicione as principais informações do evento.</p>
+                
+                <div class="form-group">
+                    <label for="nome-evento">Nome do evento *</label>
+                    <input type="text" id="nome-evento" name="nome-evento" maxlength="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagem-evento">Imagem de divulgação (opcional)</label>
+                    <div class="file-dropzone">
+                        <i class="material-icons">upload_file</i>
+                        <span>Clique ou arraste a imagem aqui</span>
+                        <p class="file-specs">Dimensão recomendada: 1600 x 838 | Máximo 2MB</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Categoria do evento *</label>
+                    <p class="category-description">Selecione uma ou mais categorias que descrevem seu evento.</p>
+                    <div class="category-selector">
+                        <input type="checkbox" id="cat-esporte" name="categoria" value="esporte">
+                        <label for="cat-esporte">ESPORTE</label>
+                        <input type="checkbox" id="cat-cultura" name="categoria" value="cultura">
+                        <label for="cat-cultura">CULTURA</label>
+                        <input type="checkbox" id="cat-musica" name="categoria" value="musica">
+                        <label for="cat-musica">MÚSICA</label>
+                        <input type="checkbox" id="cat-danca" name="categoria" value="danca">
+                        <label for="cat-danca">DANÇA</label>
+                        <input type="checkbox" id="cat-tradicao" name="categoria" value="tradicao">
+                        <label for="cat-tradicao">TRADIÇÃO</label>
+                        <input type="checkbox" id="cat-outros" name="categoria" value="outros">
+                        <label for="cat-outros">OUTROS</label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">calendar_today</i>
+                    <h2>2. Data e horário</h2>
+                </div>
+                <p>Informe aos participantes quando seu evento vai acontecer.</p>
+
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="data-inicio">Data de Início *</label>
+                        <input type="date" id="data-inicio" name="data-inicio" value="2025-10-18" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora-inicio">Hora de Início *</label>
+                        <input type="time" id="hora-inicio" name="hora-inicio" value="18:30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="data-termino">Data de Término *</label>
+                        <input type="date" id="data-termino" name="data-termino" value="2025-10-20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora-termino">Hora de Término *</label>
+                        <input type="time" id="hora-termino" name="hora-termino" value="18:30" required>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">description</i>
+                    <h2>3. Descrição do evento</h2>
+                </div>
+                <p>Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!</p>
+                <div class="form-group">
+                    <textarea id="descricao-evento" name="descricao-evento" rows="8"></textarea>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">location_on</i>
+                    <h2>4. Onde o seu evento vai acontecer?</h2>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nome-local">Nome do Local *</label>
+                    <input type="text" id="nome-local" name="nome-local" maxlength="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input type="tel" id="cep" name="cep" placeholder="Apenas números">
+                </div>
+
+                <div class="form-group-inline">
+                    <div class="form-group" style="flex: 3;">
+                        <label for="rua">Av./Rua *</label>
+                        <input type="text" id="rua" name="rua" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" name="numero">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" id="complemento" name="complemento" maxlength="250">
+                </div>
+
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro">
+                    </div>
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
+                        <input type="text" id="cidade" name="cidade" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado *</label>
+                        <input type="text" id="estado" name="estado" required>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">confirmation_number</i>
+                    <h2>5. Ingressos</h2>
+                </div>
+                
+                <div class="form-group-toggle">
+                    <label for="has-tickets">Este evento necessita de ingressos?</label>
+                    <input type="checkbox" id="has-tickets" name="has-tickets" class="toggle-switch">
+                </div>
+    
+                <div id="ticket-creation-area" class="hidden-section-css">
+                    
+                    <div id="ticket-options-buttons" class="ticket-options">
+                        <button type="button" id="show-paid-form-btn" class="btn-ticket">+ INGRESSO PAGO</button>
+                        <button type="button" id="show-free-form-btn" class="btn-ticket">+ INGRESSO GRATUITO</button>
+                    </div>
+                    
+                    <form id="paid-ticket-form" class="inline-ticket-form">
+                        <h3>Criar Ingresso Pago</h3>
+                        <div class="form-group">
+                            <label for="paid-ticket-name">Nome do ingresso (ex: Pista, VIP)</label>
+                            <input type="text" id="paid-ticket-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="paid-ticket-quantity">Quantidade disponível</label>
+                            <input type="number" id="paid-ticket-quantity" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="paid-ticket-value">Valor (o que você quer receber)</label>
+                            <input type="number" id="paid-ticket-value" step="0.01" min="0.01" placeholder="Ex: 100.00" required>
+                            <p class="tax-note">O valor final para o cliente incluirá a taxa de 8% da plataforma.</p>
+                        </div>
+                        
+                        <footer class="inline-form-footer">
+                            <button type="button" class="btn-outline cancel-ticket-btn">Cancelar</button>
+                            <button type="submit" class="btn-primary">Salvar Ingresso</button>
+                        </footer>
+                    </form>
+
+                    <form id="free-ticket-form" class="inline-ticket-form">
+                        <h3>Criar Ingresso Gratuito</h3>
+                        <div class="form-group">
+                            <label for="free-ticket-name">Nome do ingresso (ex: Inscrição, Cortesia)</label>
+                            <input type="text" id="free-ticket-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="free-ticket-quantity">Quantidade disponível</label>
+                            <input type="number" id="free-ticket-quantity" min="1" required>
+                        </div>
+                        <footer class="inline-form-footer">
+                            <button type="button" class="btn-outline cancel-ticket-btn">Cancelar</button>
+                            <button type="submit" class="btn-primary">Salvar Ingresso</button>
+                        </footer>
+                    </form>
+
+                    <div id="created-tickets-list" class="tickets-list-container">
+                        </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">store</i>
+                    <h2>6. Sobre o produtor</h2>
+                </div>
+                <p>Conte um pouco sobre você ou a sua empresa.</p>
+                
+                <div class="form-group">
+                    <label for="nome-produtor">Nome do Produtor *</label>
+                    <input type="text" id="nome-produtor" name="nome-produtor" maxlength="60" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="desc-produtor">Descrição do produtor (opcional)</label>
+                    <textarea id="desc-produtor" name="desc-produtor" rows="4"></textarea>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">gavel</i>
+                    <h2>7. Responsabilidades</h2>
+                </div>
+                
+                <div class="form-group-checkbox">
+                    <input type="checkbox" id="termos" name="termos" required>
+                    <label for="termos">
+                        Ao publicar este evento, estou de acordo com os <a href="#">Termos de uso</a>, <a href="#">Diretrizes da Comunidade</a> e <a href="#">Regras de meia-entrada</a>.
+                    </a href="#">
+                </div>
+
+                <div class="form-group">
+                    <label class="visibility-label">Visibilidade do evento:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="publico" name="visibilidade" value="publico" checked>
+                        <label for="publico">Público</label>
+                        <input type="radio" id="privado" name="visibilidade" value="privado">
+                        <label for="privado">Privado</label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">star</i>
+                    <h2>8. Impulsione seu Evento</h2>
+                </div>
+                
+                <div class="form-group-toggle">
+                    <label for="premium-boost">Tornar-se Criador Premium</label>
+                    <input type="checkbox" id="premium-boost" name="premium-boost" class="toggle-switch">
+                </div>
+                <p class="premium-description">
+                    Ao ativar o modo Premium, seu evento ganhará destaque na página principal 
+                    e em nossas campanhas de marketing, alcançando milhares de pessoas a mais.
+                    <a href="#">Saiba mais sobre as vantagens.</a>
+                </p>
+            </section>
+
+        </form>
+    </main>
+
+    <footer class="form-footer">
+        <div class="footer-buttons">
+            <button type="button" class="btn-secondary">Salvar rascunho</button>
+            <button type="button" class="btn-outline">Pré-visualizar</button>
+            <button type="submit" form="event-form" class="btn-primary">Publicar Evento</button>
+        </div>
+    </footer>
+    
+    <script src="criarevento.js"></script>
+</body>
+</html>
