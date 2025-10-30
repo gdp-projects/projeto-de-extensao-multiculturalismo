@@ -1,3 +1,8 @@
+if (localStorage.getItem("token")) {
+    alert("Você já está logado!");
+    window.location.href = "../pages/perfil_usuario/inicio.html";
+}
+
 document.getElementById("loginForm").addEventListener("submit", async function(event) {
   event.preventDefault();
 

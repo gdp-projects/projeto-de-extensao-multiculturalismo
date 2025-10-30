@@ -1,14 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
-  
+  const logoutBtns = document.querySelectorAll(".logout"); // todos botões sair
+
   if (!usuario) {
     alert("Você precisa estar logado!");
     window.location.href = "../login.html";
     return;
   }
 
-  // Exemplo de exibição dos dados no HTML
-  document.getElementById("nomePerfil").textContent = usuario.primeiro_nome || "Usuario";
+  // Adiciona evento em todos os botões "Sair"
+  logoutBtns.forEach(btn => {
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.removeItem("token");
+      localStorage.removeItem("usuario");
+      alert("Você saiu com sucesso!");
+      window.location.href = "../login.html";
+    });
+  });
+
+  // Exibe dados do usuário no perfil
+  document.getElementById("nomePerfil").textContent = usuario.primeiro_nome || "Usuário";
   document.getElementById("emailPerfil").textContent = usuario.email;
   document.getElementById("usuarioPerfil").textContent = usuario.nome_usuario;
 });
