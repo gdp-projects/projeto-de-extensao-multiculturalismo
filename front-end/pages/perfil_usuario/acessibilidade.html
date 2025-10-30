@@ -1,112 +1,174 @@
+<!-- ===== acessibilidade.html ===== -->
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>gdp</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="perfil.css">
-</head>
-<body>
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="menu-btn" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
-      <div class="logo">
-        <i class="fa-solid fa-star"></i>
-        <span>Plataforma</span>
-        <i class="fa-solid fa-hat-cowboy"></i>
-      </div>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="perfil.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <!-- Topbar -->
+<header class="topbar">
+   <div class="topbar-left">
+    <div class="logo">
+     <span>
+      Simbora
+     </span>
     </div>
-
-    <div class="topbar-right">
-      <button class="menu-btn user-menu"><i class="fa-solid fa-bars"></i></button>
-      <div class="user-dropdown">
-        <a href="perfil.html"><i class="fa-solid fa-user"></i> Perfil</a>
-        <a href="relatorios.html"><i class="fa-solid fa-chart-line"></i> Relatórios</a>
-        <a href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
-        <a href="acessibilidade.html"><i class="fa-solid fa-universal-access"></i> Acessibilidade</a>
-      </div>
-    </div>
+   </div>
   </header>
-
   <div class="app">
+<div class="menu-hamburguer" id="menuHamburguer">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<nav class="menu-mobile" id="menuMobile">
+  <ul>
+    <li><a href="inicio.html">Início</a></li>
+    <li><a href="eventos.html">Eventos</a></li>
+    <li><a href="relatorios.html">Relatórios</a></li>
+    <li><a href="acessibilidade.html">Acessibilidade</a></li>
+    <li><a href="configuracoes.html">Configurações</a></li>
+  </ul>
+</nav>
+   <!-- Sidebar de navegação -->
     <aside class="sidebar">
-      <nav>
-        <a href="inicio.html" class="nav-item"><i class="fa-solid fa-house"></i> Início</a>
-        <a href="eventos.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i> Meus Eventos</a>
-        <a href="perfil.html" class="nav-item"><i class="fa-solid fa-user-pen"></i> Perfil</a>
-        <a href="relatorios.html" class="nav-item"><i class="fa-solid fa-chart-line"></i> Relatórios</a>
-        <a href="configuracoes.html" class="nav-item"><i class="fa-solid fa-gear"></i> Configurações</a>
-        <a href="acessibilidade.html" class="nav-item active"><i class="fa-solid fa-universal-access"></i> Acessibilidade</a>
-      </nav>
-      <div class="sidebar-footer">
-        <i class="fa-solid fa-seedling"></i> 🌵
-        <small>Nordeste 2025</small>
-      </div>
-    </aside>
-
+    <nav>
+     <a class="nav-item" href="inicio.html">
+      <i class="fa-solid fa-house">
+      </i>
+      Início
+     </a>
+     <a class="nav-item" href="eventos.html">
+      <i class="fa-solid fa-calendar-days">
+      </i>
+      Meus Eventos
+     </a>
+     <a class="nav-item" href="perfil.html">
+      <i class="fa-solid fa-user-pen">
+      </i>
+      Perfil
+     </a>
+     <a class="nav-item" href="relatorios.html">
+      <i class="fa-solid fa-chart-line">
+      </i>
+      Relatórios
+     </a>
+     <a class="nav-item" href="configuracoes.html">
+      <i class="fa-solid fa-gear">
+      </i>
+      Configurações
+     </a>
+     <a class="nav-item active" href="acessibilidade.html">
+      <i class="fa-solid fa-universal-access">
+      </i>
+      Acessibilidade
+     </a>
+          </nav>
+      <!-- Fim da navegação -->
+    <div class="sidebar-footer">
+    </div>
+   </aside>
+   <!-- Conteúdo principal -->
     <main class="main">
-      <section class="panel-top">
-        <h2>🌵 Acessibilidade</h2>
-        <p class="muted">Customize sua experiência com o toque do sertão.</p>
-      </section>
-
-      <!-- Temas -->
-      <h3 class="topic-title">🌞 Tema</h3>
-      <section class="accessibility-grid">
-        <div class="access-card" data-theme="claro">
-          <i class="fa-solid fa-sun"></i>
-          <span>Modo Claro</span>
-        </div>
-        <div class="access-card" data-theme="escuro">
-          <i class="fa-solid fa-moon"></i>
-          <span>Modo Escuro</span>
-        </div>
-        <div class="access-card" data-theme="contraste">
-          <i class="fa-solid fa-adjust"></i>
-          <span>Alto Contraste</span>
-        </div>
-      </section>
-
-      <!-- Fontes -->
-      <h3 class="topic-title">🔠 Tamanho da Fonte</h3>
-      <section class="accessibility-grid">
-        <div class="access-card" data-font="pequeno">
-          <i class="fa-solid fa-text-width"></i>
-          <span>Pequeno</span>
-        </div>
-        <div class="access-card" data-font="medio">
-          <i class="fa-solid fa-font"></i>
-          <span>Médio</span>
-        </div>
-        <div class="access-card" data-font="grande">
-          <i class="fa-solid fa-text-height"></i>
-          <span>Grande</span>
-        </div>
-      </section>
-
-      <!-- Recursos extras -->
-      <h3 class="topic-title">♿ Recursos Extras</h3>
-      <section class="accessibility-grid">
-        <div class="access-card" data-extra="leitor">
-          <i class="fa-solid fa-volume-high"></i>
-          <span>Leitor de Tela</span>
-        </div>
-        <div class="access-card" data-extra="animacoes">
-          <i class="fa-solid fa-bolt"></i>
-          <span>Reduzir Animações</span>
-        </div>
-        <div class="access-card" data-extra="links">
-          <i class="fa-solid fa-link"></i>
-          <span>Destacar Links</span>
-        </div>
-      </section>
-    </main>
+    <section class="panel-top">
+     <h2>
+      Acessibilidade
+     </h2>
+    </section>
+    <!-- Temas -->
+    <h3 class="topic-title">
+     Tema
+    </h3>
+    <section class="accessibility-grid">
+     <div class="access-card" data-theme="claro">
+      <i class="fa-solid fa-sun">
+      </i>
+      <span>
+       Modo Claro
+      </span>
+     </div>
+     <div class="access-card" data-theme="escuro">
+      <i class="fa-solid fa-moon">
+      </i>
+      <span>
+       Modo Escuro
+      </span>
+     </div>
+     <div class="access-card" data-theme="contraste">
+      <i class="fa-solid fa-adjust">
+      </i>
+      <span>
+       Alto Contraste
+      </span>
+     </div>
+    </section>
+    <!-- Fontes -->
+    <h3 class="topic-title">
+     Tamanho da Fonte
+    </h3>
+    <section class="accessibility-grid">
+     <div class="access-card" data-font="pequeno">
+      <i class="fa-solid fa-text-width">
+      </i>
+      <span>
+       Pequeno
+      </span>
+     </div>
+     <div class="access-card" data-font="medio">
+      <i class="fa-solid fa-font">
+      </i>
+      <span>
+       Médio
+      </span>
+     </div>
+     <div class="access-card" data-font="grande">
+      <i class="fa-solid fa-text-height">
+      </i>
+      <span>
+       Grande
+      </span>
+     </div>
+    </section>
+    <!-- Recursos extras -->
+    <h3 class="topic-title">
+     Recursos Extras
+    </h3>
+    <section class="accessibility-grid">
+     <div class="access-card" data-extra="leitor">
+      <i class="fa-solid fa-volume-high">
+      </i>
+      <span>
+       Leitor de Tela
+      </span>
+     </div>
+     <div class="access-card" data-extra="animacoes">
+      <i class="fa-solid fa-bolt">
+      </i>
+      <span>
+       Reduzir Animações
+      </span>
+     </div>
+     <div class="access-card" data-extra="links">
+      <i class="fa-solid fa-link">
+      </i>
+      <span>
+       Destacar Links
+      </span>
+     </div>
+    </section>
+   </main>
   </div>
-
-  <a href="../../index.html" class="back-btn" title="Voltar para Início"><i class="fa-solid fa-arrow-left"></i></a>
-  <script src="perfil.js"></script>
-</body>
+  <a class="back-btn" href="../../index.html" title="Voltar para Início">
+   <i class="fa-solid fa-arrow-left">
+   </i>
+  </a>
+  <script src="../../assets/js/modules/perfil.js">
+  </script>
+ </body>
 </html>

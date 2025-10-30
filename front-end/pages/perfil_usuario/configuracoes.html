@@ -1,88 +1,141 @@
+<!-- ===== configuracoes.html ===== -->
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>gdp</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="perfil.css">
-</head>
-<body>
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="menu-btn" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
-      <div class="logo">
-        <i class="fa-solid fa-star"></i>
-        <span>Plataforma</span>
-      </div>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="perfil.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <!-- Topbar -->
+<header class="topbar">
+   <div class="topbar-left">
+    <div class="logo">
+     <span>
+      Simbora
+     </span>
     </div>
-
-    <div class="topbar-right">
-      <button class="menu-btn user-menu" aria-label="Abrir menu do usuário">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <div class="user-dropdown">
-        <a href="perfil.html"><i class="fa-solid fa-user"></i> Perfil</a>
-        <a href="relatorios.html"><i class="fa-solid fa-chart-line"></i> Relatórios</a>
-        <a href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
-        <a href="acessibilidade.html"><i class="fa-solid fa-universal-access"></i> Acessibilidade</a>
-      </div>
-    </div>
+   </div>
   </header>
-
   <div class="app">
+<div class="menu-hamburguer" id="menuHamburguer">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<nav class="menu-mobile" id="menuMobile">
+  <ul>
+    <li><a href="inicio.html">Início</a></li>
+    <li><a href="eventos.html">Eventos</a></li>
+    <li><a href="relatorios.html">Relatórios</a></li>
+    <li><a href="acessibilidade.html">Acessibilidade</a></li>
+    <li><a href="configuracoes.html">Configurações</a></li>
+  </ul>
+</nav>
+   <!-- Sidebar de navegação -->
     <aside class="sidebar">
-      <nav>
-        <a href="inicio.html" class="nav-item"><i class="fa-solid fa-house"></i> Início</a>
-        <a href="eventos.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i> Meus Eventos</a>
-        <a href="perfil.html" class="nav-item"><i class="fa-solid fa-user-pen"></i> Perfil</a>
-        <a href="relatorios.html" class="nav-item"><i class="fa-solid fa-chart-line"></i> Relatórios</a>
-        <a href="configuracoes.html" class="nav-item active"><i class="fa-solid fa-gear"></i> Configurações</a>
-        <a href="acessibilidade.html" class="nav-item"><i class="fa-solid fa-universal-access"></i> Acessibilidade</a>
-      </nav>
-      <div class="sidebar-footer">
-        <small>Versão <strong>1.0</strong></small>
-      </div>
-    </aside>
-
+    <nav>
+     <a class="nav-item" href="inicio.html">
+      <i class="fa-solid fa-house">
+      </i>
+      Início
+     </a>
+     <a class="nav-item" href="eventos.html">
+      <i class="fa-solid fa-calendar-days">
+      </i>
+      Meus Eventos
+     </a>
+     <a class="nav-item" href="perfil.html">
+      <i class="fa-solid fa-user-pen">
+      </i>
+      Perfil
+     </a>
+     <a class="nav-item" href="relatorios.html">
+      <i class="fa-solid fa-chart-line">
+      </i>
+      Relatórios
+     </a>
+     <a class="nav-item active" href="configuracoes.html">
+      <i class="fa-solid fa-gear">
+      </i>
+      Configurações
+     </a>
+     <a class="nav-item" href="acessibilidade.html">
+      <i class="fa-solid fa-universal-access">
+      </i>
+      Acessibilidade
+     </a>
+          </nav>
+      <!-- Fim da navegação -->
+    <div class="sidebar-footer">
+    </div>
+   </aside>
+   <!-- Conteúdo principal -->
     <main class="main">
-      <section class="panel-top">
-        <h2>⚙️ Configurações</h2>
-        <p class="muted">Gerencie suas preferências da plataforma.</p>
-      </section>
-
-      <section class="card profile-form">
-        <form>
-          <label>Idioma</label>
-          <select>
-            <option selected>Português</option>
-            <option>Inglês</option>
-          </select>
-
-          <label>Notificações</label>
-          <select>
-            <option selected>Ativadas</option>
-            <option>Desativadas</option>
-          </select>
-
-          <label>Privacidade</label>
-          <select>
-            <option>Pública</option>
-            <option selected>Somente convidados</option>
-          </select>
-
-          <div class="form-row">
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <button type="button" class="btn ghost">Cancelar</button>
-          </div>
-        </form>
-      </section>
-    </main>
+    <section class="panel-top">
+     <h2>
+      Configurações
+     </h2>
+     <p class="muted">
+      Gerencie suas preferências da plataforma.
+     </p>
+    </section>
+    <section class="card profile-form">
+     <form>
+      <label>
+       Idioma
+      </label>
+      <select>
+       <option selected="">
+        Português
+       </option>
+       <option>
+        Inglês
+       </option>
+      </select>
+      <label>
+       Notificações
+      </label>
+      <select>
+       <option selected="">
+        Ativadas
+       </option>
+       <option>
+        Desativadas
+       </option>
+      </select>
+      <label>
+       Privacidade
+      </label>
+      <select>
+       <option>
+        Pública
+       </option>
+       <option selected="">
+        Somente convidados
+       </option>
+      </select>
+      <div class="form-row">
+       <button class="btn btn-primary" type="submit">
+        Salvar
+       </button>
+       <button class="btn ghost" type="button">
+        Cancelar
+       </button>
+      </div>
+     </form>
+    </section>
+   </main>
   </div>
-
-  <a href="../../index.html" class="back-btn" title="Voltar para Início"><i class="fa-solid fa-arrow-left"></i></a>
-  <script src="perfil.js"></script>
-</body>
+  <a class="back-btn" href="../../index.html" title="Voltar para Início">
+   <i class="fa-solid fa-arrow-left">
+   </i>
+  </a>
+  <script src="../../assets/js/modules/perfil.js">
+  </script>
+ </body>
 </html>

@@ -24,16 +24,25 @@ const createUsuario = async (usuario) => {
     return res.rows[0];
 }
 
-const loginUsuario = async (nome_usuario, senha) => {
-    const res = await pool.query('SELECT * FROM usuarios WHERE nome_usuario = $1 AND senha = $2', [nome_usuario, senha]);
+const findUsuarioByNome = async (nome_usuario) => {
+    const res = await pool.query(
+        'SELECT * FROM usuarios WHERE nome_usuario = $1',
+        [nome_usuario]
+    );
     return res.rows[0];
-}
+};
 
+const deleteUsuario = async (id, nome_usuario, senha) => {
+    // corrigido para usar a coluna id_usuario
+    const res = await pool.query('DELETE FROM usuarios WHERE nome_usuario = $1 AND senha = $2 AND id_usuario = $3', [nome_usuario, senha, id])
+    return res.rowCount
+}
 
 export default {
     getAllUsuarios,
     getUsuarioById,
     getUsuarioByNomeUsuario,
     createUsuario,
-    loginUsuario
+    findUsuarioByNome,
+    deleteUsuario
 };

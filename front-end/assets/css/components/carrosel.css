@@ -17,7 +17,7 @@
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
   /* altura responde ao viewport, mas limita para não exagerar */
   height: clamp(360px, 52vw, 560px);
   margin: 0 auto;
