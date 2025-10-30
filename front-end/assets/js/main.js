@@ -111,6 +111,14 @@ if (track) {
   });
 }
 
+function usuarioLogado() {
+  if (localStorage.getItem("token")) {
+      const usuario = JSON.parse(localStorage.getItem("usuario"));
+      console.log(usuario);
+  }
+}
+
 // Início
 updateCarousel();
 startAutoPlay();
+usuarioLogado();
