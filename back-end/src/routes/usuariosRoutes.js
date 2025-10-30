@@ -14,6 +14,6 @@ router.post('/', usuariosController.createUsuario)
 router.delete('/:id', usuariosMiddleware.autenticarToken, usuariosController.deleteUsuario)
 
 // Rota para login de usuário
-router.post('/login', usuariosModel.loginUsuario)
+router.post('/login', usuariosController.loginUsuario)
 
 export default router

@@ -6,6 +6,7 @@ document.getElementById("registerForm").addEventListener("submit", function(even
   const email = document.getElementById("email").value;
   const nome_usuario = document.getElementById("nome-usuario").value;
   const telefone = document.getElementById("telefone").value;
+  const data_nascimento = document.getElementById("data-nascimento").value;
   const senha = document.getElementById("senha").value;
   const confirmarSenha = document.getElementById("confirmarSenha").value;
 
@@ -21,7 +22,7 @@ document.getElementById("registerForm").addEventListener("submit", function(even
   }
 
   // Envio para a API
-  const dados = { nome, sobrenome, email, nome_usuario, telefone, senha };
+  const dados = { nome, sobrenome, email, nome_usuario, telefone, data_nascimento, senha };
   registrarUsuario(dados)
     .then(() => {
       alert("Usuário registrado com sucesso!");

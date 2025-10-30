@@ -1,20 +1,50 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  
+  if (!usuario) {
+    alert("Você precisa estar logado!");
+    window.location.href = "../login.html";
+    return;
+  }
+
+  // Exemplo de exibição dos dados no HTML
+  document.getElementById("nomePerfil").textContent = usuario.primeiro_nome || "Usuario";
+  document.getElementById("emailPerfil").textContent = usuario.email;
+  document.getElementById("usuarioPerfil").textContent = usuario.nome_usuario;
+});
+
 function aplicarTamanhoFonte(valor) {
   document.body.classList.remove('fonte-pequena', 'fonte-media', 'fonte-grande');
-  if (valor === 'pequeno') document.body.classList.add('fonte-pequena');
-  else if (valor === 'medio') document.body.classList.add('fonte-media');
-  else if (valor === 'grande') document.body.classList.add('fonte-grande');
+  switch (valor) {
+    case 'pequeno':
+      document.body.classList.add('fonte-pequena');
+      break;
+    case 'medio':
+      document.body.classList.add('fonte-media');
+      break;
+    case 'grande':
+      document.body.classList.add('fonte-grande');
+      break;
+  }
 }
 
 function aplicarTema(tema) {
   document.body.classList.remove('tema-claro', 'tema-escuro', 'tema-contraste');
-  if (tema === 'claro') document.body.classList.add('tema-claro');
-  else if (tema === 'escuro') document.body.classList.add('tema-escuro');
-  else if (tema === 'contraste') document.body.classList.add('tema-contraste');
+  switch (tema) {
+    case 'claro':
+      document.body.classList.add('tema-claro');
+      break;
+    case 'escuro':
+      document.body.classList.add('tema-escuro');
+      break;
+    case 'contraste':
+      document.body.classList.add('tema-contraste');
+      break;
+  }
 }
 
 function aplicarReduzirAnimacoes(ativo) {
-  if (ativo) document.body.classList.add('reduzir-animacoes');
-  else document.body.classList.remove('reduzir-animacoes');
+  ativo ? document.body.classList.add('reduzir-animacoes') : document.body.classList.remove('reduzir-animacoes');
 }
 
 function salvarPreferencias({ tema, fonte, animacoes }) {
@@ -76,10 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
       carregarPreferencias();
     });
   });
-
-
 });
-// ...código existente...
 
 // Menu Hambúrguer
 document.addEventListener('DOMContentLoaded', function() {

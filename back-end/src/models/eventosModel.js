@@ -60,7 +60,7 @@ export default {createEvento,
     getAllEventos,
     getEventoById,
     getEventoByName,
-    getEventoByUserId
+    getEventoByUserId,
     deleteEvento,
     updateEvento
 };

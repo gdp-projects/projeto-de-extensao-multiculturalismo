@@ -96,13 +96,12 @@ const updateEvento = async (req, res) => {
     }
 };
 
-
 export default {
     createEvento, 
     getEventos, 
     getEventoById,
     getEventoByName,
-    getEventoByUserId
+    getEventoByUserId,
     deleteEvento,
     updateEvento
 };
