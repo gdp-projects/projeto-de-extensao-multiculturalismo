@@ -106,8 +106,6 @@ document.addEventListener('DOMContentLoaded', function () {
       carregarPreferencias();
     });
   });
-
-
 });
 
 // Menu Hambúrguer

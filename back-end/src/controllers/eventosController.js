@@ -96,7 +96,6 @@ const updateEvento = async (req, res) => {
     }
 };
 
-
 export default {
     createEvento, 
     getEventos, 
