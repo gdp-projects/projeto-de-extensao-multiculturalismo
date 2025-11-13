@@ -18,11 +18,26 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "../login.html";
     });
   });
+  
+  // Preenche campos do perfil de forma segura (não quebra se o elemento não existir)
+  const safeSetTextById = (id, value) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = value ?? '';
+  };
 
-  // Exibe dados do usuário no perfil
-  document.getElementById("nomePerfil").textContent = usuario.primeiro_nome || "Usuário";
-  document.getElementById("emailPerfil").textContent = usuario.email;
-  document.getElementById("usuarioPerfil").textContent = usuario.nome_usuario;
+  safeSetTextById('user-first-name', usuario?.primeiro_nome ?? '');
+  safeSetTextById('user-full-name', `${usuario?.primeiro_nome ?? ''} ${usuario?.sobrenome ?? ''}`.trim());
+  safeSetTextById('email', usuario?.email ?? '');
+  safeSetTextById('username', usuario?.nome_usuario ?? '');
+  safeSetTextById('organizer', usuario?.isorganizer ? 'Organizador' : 'Usuário');
+  safeSetTextById('account-tier', usuario?.ispremium ? 'Premium' : 'Grátis');
+
+  if (!usuario?.isorganizer) {
+    const organizerElements = document.querySelectorAll('.organizer');
+    organizerElements.forEach(el => el.style.display = 'none');
+  }
+
 });
 
 function aplicarTamanhoFonte(valor) {

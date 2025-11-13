@@ -1,3 +1,5 @@
+const API_URL_BASE = 'http://localhost:8080/';
+
 if (localStorage.getItem("token")) {
     alert("Você já está logado!");
     window.location.href = "../pages/perfil_usuario/inicio.html";
@@ -39,7 +41,7 @@ document.getElementById("registerForm").addEventListener("submit", function(even
 });
 
 async function registrarUsuario(dados) {
-  const resposta = await fetch('http://localhost:8080/usuarios', {
+  const resposta = await fetch(`${API_URL_BASE}usuarios`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

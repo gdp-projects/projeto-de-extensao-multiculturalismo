@@ -4,92 +4,234 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <title>
-  </title>
+  <title>Meus Eventos — Simbora</title>
+  <meta name="description" content="Lista dos eventos do usuário — criar, editar e visualizar eventos pessoais." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
   <link href="perfil.css" rel="stylesheet"/>
  </head>
+ <style>
+
+/* Layout da área principal */
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.main-content {
+    padding: 28px 24px;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+}
+
+.profile-section {
+    /* centraliza o conteúdo e limita largura para que os cards fiquem centralizados */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Container dos cards: grid responsivo e cards centralizados */
+.events-list {
+    margin-top: 20px;
+    margin-bottom: 60px;
+    display: grid;
+    gap: 20px;
+    /* melhor comportamento em diferentes larguras */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    justify-items: center; /* garante que os cards fiquem centralizados nas colunas maiores */
+    align-items: start;
+}
+
+/* Card */
+.event-card {
+    background: #fff7ed;
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch; /* estica o conteúdo para alinhar botões e texto */
+    text-align: left; /* texto alinhado à esquerda para melhor leitura */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid #e5c3a1;
+    transition: transform .18s;
+    width: 100%;
+    max-width: 420px; /* evita cards demasiadamente largos */
+    box-sizing: border-box;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Imagem */
+.event-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e0b88a;
+}
+
+/* Conteúdo */
+.event-info {
+    padding: 0 6px 6px 6px;
+}
+
+.event-info h2 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #4d2e14;
+}
+
+.event-info p {
+    margin: 4px 0;
+    color: #6c4e33;
+    font-size: 14px;
+}
+
+/* Botões: alinhar à esquerda dentro do card e manter espaçamento */
+.event-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    padding: 0 6px 8px 6px;
+}
+
+.event-actions a {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-editar {
+    background: #e84a5f;
+    color: white;
+}
+
+.btn-ver {
+    background: #f0d0b5;
+    color: #4a2e1b;
+}
+
+.btn-editar:hover {
+    background: #d23f53;
+}
+
+.btn-ver:hover {
+    background: #e5c3a1;
+}
+
+/* Melhor responsividade em mobile */
+@media (max-width: 880px) {
+    .events-list {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    .event-card img {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content { padding: 16px 12px; }
+    .events-list { gap: 14px; }
+    .event-card { padding: 12px; max-width: none; }
+    .event-card img { height: 130px; }
+    .event-info h2 { font-size: 18px; }
+}
+
+</style>
+
  <body>
 
  <!-- Topbar -->
-<header class="topbar">
-   <div class="topbar-left">
-    <div class="logo">
-     <span>
-      Simbora
-     </span>
-    </div>
-   </div>
-  </header>
-  <div class="app">
-<div class="menu-hamburguer" id="menuHamburguer">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-<nav class="menu-mobile" id="menuMobile">
-  <ul>
-    <li><a href="inicio.html">Início</a></li>
-    <li><a href="eventos.html">Eventos</a></li>
-    <li><a href="relatorios.html">Relatórios</a></li>
-    <li><a href="acessibilidade.html">Acessibilidade</a></li>
-    <li><a href="configuracoes.html">Configurações</a></li>
-    <li><a href="#" class="logout">Sair</a></li>
-  </ul>
-</nav>
-   <!-- Sidebar de navegação -->
-    <aside class="sidebar">
-    <nav>
-     <a class="nav-item" href="inicio.html">
-      <i class="fa-solid fa-house">
-      </i>
-      Início
+ <header class="topbar" role="banner">
+     <div class="topbar-left">
+        <div class="logo" aria-hidden="true">
+         <span> Simbora </span>
+        </div>
+     </div>
+     <button id="menuHamburguer" class="menu-hamburguer" aria-controls="menuMobile" aria-expanded="false" aria-label="Abrir menu">
+         <span></span>
+         <span></span>
+         <span></span>
+     </button>
+ </header>
+
+ <div class="app">
+
+ <!-- Menu mobile (toggle) -->
+ <nav class="menu-mobile" id="menuMobile" aria-label="Menu principal">
+    <ul>
+        <li><a href="inicio.html">Início</a></li>
+        <li><a class="organizer" href="eventos.html">Eventos</a></li>
+        <li><a class="organizer" href="relatorios.html">Relatórios</a></li>
+        <li><a href="acessibilidade.html">Acessibilidade</a></li>
+        <li><a href="configuracoes.html">Configurações</a></li>
+        <li><a href="#" class="logout">Sair</a></li>
+    </ul>
+ </nav>
+
+ <!-- Sidebar de navegação -->
+ <aside class="sidebar" role="navigation" aria-label="Navegação lateral">
+     <nav>
+         <a class="nav-item" href="inicio.html"><i class="fa-solid fa-house"></i> Início</a>
+         <a class="nav-item active organizer" href="eventos.html"><i class="fa-solid fa-calendar-days"></i> Meus Eventos</a>
+         <a class="nav-item" href="perfil.html"><i class="fa-solid fa-user-pen"></i> Perfil</a>
+         <a class="nav-item organizer" href="relatorios.html"><i class="fa-solid fa-chart-line"></i> Relatórios</a>
+         <a class="nav-item" href="configuracoes.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+         <a class="nav-item" href="acessibilidade.html"><i class="fa-solid fa-universal-access"></i> Acessibilidade</a>
+         <a class="nav-item logout" href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+     </nav>
+ </aside>
+
+ <!-- Conteúdo principal -->
+ <main class="main-content" role="main">
+     <section class="profile-section">
+         <div class="profile-header">
+             <h1>Meus Eventos</h1>
+         </div>
+
+         <!-- Lista de eventos: o JS preencherá este container. Incluí um card de exemplo como fallback/preview. -->
+         <div class="events-list" id="eventsList" aria-live="polite">
+
+             <!-- Card de exemplo - será substituído pelo JS quando houver dados -->
+             <article class="event-card" aria-labelledby="event1-title">
+                 <img src="../../assets/images/placeholder.jpg" alt="Imagem do evento" />
+                 <div class="event-info">
+                     <h2 id="event1-title">Nome do Evento</h2>
+                     <p class="event-meta">18/10/2025 • 18:30 • público</p>
+                 </div>
+                 <div class="event-actions">
+                     <a class="btn-editar" href="#" title="Editar evento">Editar</a>
+                     <a class="btn-ver" href="#" title="Ver detalhes do evento">Ver</a>
+                 </div>
+             </article>
+
+         </div>
+     </section>
+
+     <!-- Botões flutuantes e voltar dentro do main para melhor semântica -->
+     <a class="floating-btn" href="../criar_evento/criarevento.html" title="Criar novo evento" aria-label="Criar novo evento">
+        <i class="fa-solid fa-plus" aria-hidden="true"></i>
      </a>
-     <a class="nav-item active" href="eventos.html">
-      <i class="fa-solid fa-calendar-days">
-      </i>
-      Meus Eventos
+
+     <a class="back-btn" href="../../index.html" title="Voltar para Início" aria-label="Voltar para Início">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
      </a>
-     <a class="nav-item" href="perfil.html">
-      <i class="fa-solid fa-user-pen">
-      </i>
-      Perfil
-     </a>
-     <a class="nav-item" href="relatorios.html">
-      <i class="fa-solid fa-chart-line">
-      </i>
-      Relatórios
-     </a>
-     <a class="nav-item" href="configuracoes.html">
-      <i class="fa-solid fa-gear">
-      </i>
-      Configurações
-     </a>
-     <a class="nav-item" href="acessibilidade.html">
-      <i class="fa-solid fa-universal-access">
-      </i>
-      Acessibilidade
-     </a>
-     <a class="nav-item logout" href="#">
-      <i class="fa-solid fa-right-from-bracket">
-      </i>
-      Sair
-     </a>
-    </nav>
-      <!-- Fim da navegação -->
-   </aside>
-   <!-- Conteúdo principal -->
-    
-  <a class="back-btn" href="../../index.html" title="Voltar para Início">
-   <i class="fa-solid fa-arrow-left">
-   </i>
-  </a>
-  <a class="floating-btn" href="../criar_evento/criarevento.html" title="Criar novo evento">
-   <i class="fa-solid fa-plus">
-   </i>
-  </a>
-  <script src="../../assets/js/modules/perfil.js">
-  </script>
+
+ </main>
+
+ <!-- Fecha app -->
+ </div>
+
+ <script src="../../assets/js/modules/carregar_eventos.js"></script>
+ <script src="../../assets/js/modules/perfil.js"></script>
  </body>
 </html>

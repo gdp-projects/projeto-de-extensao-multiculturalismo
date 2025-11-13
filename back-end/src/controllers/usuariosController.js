@@ -61,15 +61,18 @@ const loginUsuario = async (req, res) => {
 
         delete usuario.senha;
 
+        // Use `id_usuario` (campo retornado pelo model) to avoid undefined id in token
         const token = jwt.sign(
-            { 
-                id: usuario.id,
-                nome_usuario: usuario.nome_usuario,
-                email: usuario.email,
-                isOrganizer: usuario.isOrganizer
-            },
-            process.env.JWT_SECRET,
-            { expiresIn: "1h" }
+        {
+            id: usuario.id_usuario || usuario.id,
+            nome_usuario: usuario.nome_usuario,
+            email: usuario.email,
+
+            // CORREÇÃO FINAL
+            isOrganizer: usuario.isorganizer === undefined ? false : usuario.isorganizer
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
         );
 
         res.status(200).json({

@@ -1,62 +1,98 @@
 import pool from "../config/db/postgreSQL.js";
 
 const createEvento = async (evento) => {
-    const { foto_local, data, hora, nome_evento, is_online, link, categoria, status} = evento;
+    const {
+        nome_evento,
+        foto_local = null,
+        descricao = null,
+        data = null,
+        hora = null,
+        endereco = null,
+        categoria = [],
+        status = 'ativo',
+        id_usuario = null
+    } = evento;
+
     const res = await pool.query(
-        'INSERT INTO eventos (foto_local, data, hora, nome_evento, is_online, link, categoria, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
-        [foto_local, data, hora, nome_evento, is_online, link, categoria, status]
+        `INSERT INTO eventos (nome_evento, foto_local, descricao, data, hora, endereco, categoria, status, id_usuario)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+        [nome_evento, foto_local, descricao, data, hora, endereco, categoria, status, id_usuario]
+    );
+
+    return res.rows[0];
+};
+
+
+const createIngresso = async (ingresso) => {
+    const { nome, tipo, preco = 0.0, quantidade = 0, fk_evento = null } = ingresso;
+    const res = await pool.query(
+        `INSERT INTO ingressos (nome, tipo, preco, quantidade, fk_evento)
+         VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+        [nome, tipo, preco, quantidade, fk_evento]
     );
     return res.rows[0];
-}
+};
+
+const addOrganizadorToEvento = async (id_evento, id_usuario) => {
+    const res = await pool.query(
+        'INSERT INTO organizador_evento (id_evento, id_usuario) VALUES ($1, $2) RETURNING *',
+        [id_evento, id_usuario]
+    );
+    return res.rows[0];
+};
+
+const addIngressoToEvento = async (id_evento, id_ingresso) => {
+    const res = await pool.query(
+        'UPDATE eventos SET fk_ingresso = array_append(coalesce(fk_ingresso, ARRAY[]::integer[]), $1) WHERE id = $2 RETURNING *',
+        [id_ingresso, id_evento]
+    );
+    return res.rows[0];
+};
 
 const getAllEventos = async () => {
-    const res = await pool.query('SELECT * FROM eventos');
+    const res = await pool.query('SELECT * FROM eventos ORDER BY data DESC, id DESC');
     return res.rows;
-}
+};
 
 const getEventoByUserId = async (id_usuario) => {
-    const res = await pool.query(
-        `SELECT evento.* FROM evento
-        INNER JOIN organizador_evento ON evento.id_evento = organizador_evento.id_evento
-        WHERE organizador_evento.id_usuario = $1`,
-        [id_usuario]
-    )
-    return res.rows
-}
+    const res = await pool.query('SELECT * FROM eventos WHERE id_usuario = $1 ORDER BY data DESC, id DESC', [id_usuario]);
+    return res.rows;
+};
 
 const getEventoById = async (id) => {
     const res = await pool.query('SELECT * FROM eventos WHERE id = $1', [id]);
     return res.rows[0];
-}
+};
 
 const getEventoByName = async (nome_evento) => {
-    const res = await pool.query("SELECT * FROM eventos Where nome_evento ILIKE $1 ORDER BY data DESC", [`%${nome_evento}%`])
-    return res.rows
-}
+    const res = await pool.query(
+        "SELECT * FROM eventos WHERE nome_evento ILIKE $1 ORDER BY data DESC",
+        [`%${nome_evento}%`]
+    );
+    return res.rows;
+};
+
 const deleteEvento = async (id) => {
     await pool.query('DELETE FROM eventos WHERE id = $1', [id]);
 };
 
 const updateEvento = async (id, evento) => {
-    const { foto_local, data, hora, nome_evento, is_online, link, categoria, status } = evento;
+    const { foto_local, data, hora, nome_evento, descricao, link, categoria, status, endereco } = evento;
+
     const res = await pool.query(
-        `UPDATE eventos SET
-         foto_local = $1,
-         data = $2,
-         hora = $3,
-         nome_evento = $4,
-         is_online = $5,
-         link = $6,
-         categoria = $7,
-         status = $8
-         WHERE id = $9
-         RETURNING *`,
-        [foto_local, data, hora, nome_evento, is_online, link, categoria, status, id]
+        `INSERT INTO eventos (foto_local, data, hora, nome_evento, descricao, link, categoria, status, fk_endereco)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+        [foto_local, data, hora, nome_evento, descricao, link, categoria, status, fk_endereco]
     );
+
     return res.rows[0];
 };
 
-export default {createEvento,
+export default {
+    createEvento,
+    createIngresso,
+    addOrganizadorToEvento,
+    addIngressoToEvento,
     getAllEventos,
     getEventoById,
     getEventoByName,

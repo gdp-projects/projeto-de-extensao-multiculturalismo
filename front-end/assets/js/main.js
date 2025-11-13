@@ -112,9 +112,19 @@ if (track) {
 }
 
 function usuarioLogado() {
+const topbarLogged = document.getElementById("topbar__logged");
+const topbarRegister = document.getElementById("topbar__register");
+const eventCreate = document.getElementById("create-event");
   if (localStorage.getItem("token")) {
       const usuario = JSON.parse(localStorage.getItem("usuario"));
-      console.log(usuario);
+      if (!usuario.isorganizer) {
+          eventCreate.style.display = "none";
+      }
+      topbarLogged.style.display = "flex";
+      topbarRegister.style.display = "none";
+  } else {
+      topbarRegister.style.display = "flex";
+      topbarLogged.style.display = "none";
   }
 }
 
