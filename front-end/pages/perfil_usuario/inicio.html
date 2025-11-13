@@ -30,8 +30,8 @@
 <nav class="menu-mobile" id="menuMobile">
   <ul>
     <li><a href="inicio.html">Início</a></li>
-    <li><a href="eventos.html">Eventos</a></li>
-    <li><a href="relatorios.html">Relatórios</a></li>
+    <li><a class="organizer" href="eventos.html">Eventos</a></li>
+    <li><a class="organizer" href="relatorios.html">Relatórios</a></li>
     <li><a href="acessibilidade.html">Acessibilidade</a></li>
     <li><a href="configuracoes.html">Configurações</a></li>
     <li><a href="#" class="logout">Sair</a></li>
@@ -45,7 +45,7 @@
       </i>
       Início
      </a>
-     <a class="nav-item" href="eventos.html">
+     <a class="nav-item organizer" href="eventos.html">
       <i class="fa-solid fa-calendar-days">
       </i>
       Meus Eventos
@@ -55,7 +55,7 @@
       </i>
       Perfil
      </a>
-     <a class="nav-item" href="relatorios.html">
+     <a class="nav-item organizer" href="relatorios.html">
       <i class="fa-solid fa-chart-line">
       </i>
       Relatórios
@@ -84,8 +84,7 @@
      <div class="welcome-left">
       <h1>
        Bem-vindo,
-       <span id="nomePerfil">
-       </span>
+       <span id="user-first-name"></span>
       </h1>
       <p class="muted">
        Gerencie seus eventos, acompanhe as métricas e fale com seu público — tudo em um só lugar.

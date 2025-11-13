@@ -76,6 +76,7 @@ body {
 .topbar__menu {
   display: flex;
   gap: 16px;
+  align-items: center;
 }
 
 .topbar__link {

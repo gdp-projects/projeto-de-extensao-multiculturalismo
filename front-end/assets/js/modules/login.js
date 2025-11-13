@@ -1,3 +1,5 @@
+const API_URL_BASE = 'http://localhost:8080/';
+
 if (localStorage.getItem("token")) {
     alert("Você já está logado!");
     window.location.href = "../pages/perfil_usuario/inicio.html";
@@ -24,16 +26,13 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 });
 
 async function verificarUsuario(dados) {
-  const resposta = await fetch('http://localhost:8080/usuarios/login', {
+  const resposta = await fetch(`${API_URL_BASE}usuarios/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(dados)
   });
-
-  console.log("Status:", resposta.status);
-  console.log("Response:", await resposta.clone().text());
 
   if (!resposta.ok) {
     const erro = await resposta.json();

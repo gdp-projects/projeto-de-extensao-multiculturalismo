@@ -15,9 +15,6 @@ const getEventoByUserId = async (req, res) => {
 
     try {
         const eventosDoUsuario = await eventosModel.getEventoByUserId(id_usuario)
-        if (evento.length() === 0) {
-            return res.status(404).json({ error: "Nenhum evento encontrado para esse usuário" })
-        }
         res.status(200).json(eventosDoUsuario)
     } catch (error) {
         console.error(error)
@@ -56,8 +53,8 @@ const getEventoByName = async (req, res) => {
 }
 
 const createEvento = async (req, res) => {
-    const {foto_local, data, hora, nome_evento, is_online, link, categoria, status} = req.body;
-    const evento = {foto_local, data, hora, nome_evento, is_online, link, categoria, status};
+    const {nome_evento, foto_local, descricao, data, hora, endereco, categoria, status, id_usuario} = req.body;
+    const evento = {nome_evento, foto_local, descricao, data, hora, endereco, categoria, status, id_usuario};
     try {
         const novoEvento = await eventosModel.createEvento(evento);
         res.status(201).json(novoEvento);
@@ -75,6 +72,18 @@ const deleteEvento = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao deletar evento' });
+    }
+};
+
+const addOrganizadorToEvento = async (req, res) => {
+    const { id_evento, id_usuario } = req.body;
+    try {
+        await eventosModel.addOrganizadorToEvento(id_evento, id_usuario);
+        res.status(201).json({ message: 'Organizador adicionado ao evento com sucesso' });
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao adicionar organizador ao evento' });
     }
 };
 
@@ -96,7 +105,6 @@ const updateEvento = async (req, res) => {
     }
 };
 
-
 export default {
     createEvento, 
     getEventos, 
@@ -104,5 +112,6 @@ export default {
     getEventoByName,
     getEventoByUserId,
     deleteEvento,
-    updateEvento
+    updateEvento,
+    addOrganizadorToEvento
 };

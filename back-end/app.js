@@ -4,6 +4,7 @@ import cors from 'cors';
 import pool from './src/config/db/postgreSQL.js'; 
 import usuarios from './src/routes/usuariosRoutes.js';
 import eventos from './src/routes/eventosRoutes.js';
+import uploads from './src/routes/uploadsRouter.js';
 
 // Carrega as variáveis de ambiente primeiro
 dotenv.config();
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 // Usar as rotas
 app.use('/usuarios', usuarios);
 app.use('/eventos', eventos);
+app.use('/uploads', uploads);
 
 // Conectar ao banco de dados e iniciar o servidor
 pool.connect()

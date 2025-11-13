@@ -30,8 +30,8 @@
 <nav class="menu-mobile" id="menuMobile">
   <ul>
     <li><a href="inicio.html">Início</a></li>
-    <li><a href="eventos.html">Eventos</a></li>
-    <li><a href="relatorios.html">Relatórios</a></li>
+    <li><a class="organizer" href="eventos.html">Eventos</a></li>
+    <li><a class="organizer" href="relatorios.html">Relatórios</a></li>
     <li><a href="acessibilidade.html">Acessibilidade</a></li>
     <li><a href="configuracoes.html">Configurações</a></li>
     <li><a href="#" class="logout">Sair</a></li>
@@ -45,7 +45,7 @@
       </i>
       Início
      </a>
-     <a class="nav-item" href="eventos.html">
+     <a class="nav-item organizer" href="eventos.html">
       <i class="fa-solid fa-calendar-days">
       </i>
       Meus Eventos
@@ -55,7 +55,7 @@
       </i>
       Perfil
      </a>
-     <a class="nav-item" href="relatorios.html">
+     <a class="nav-item organizer" href="relatorios.html">
       <i class="fa-solid fa-chart-line">
       </i>
       Relatórios
@@ -93,12 +93,13 @@
       <div class="avatar-large">
       </div>
       <h3>
-       João Gabriel
+       <span id="user-full-name"></span>
       </h3>
       <p class="muted">
-       Organizador •
+       <span id="organizer"></span>
+       •
        <strong>
-        Premium
+        <span id="account-tier"></span>
        </strong>
       </p>
       <div class="profile-stats">
@@ -167,7 +168,7 @@
        <label>
         Telefone
        </label>
-       <input type="text" value="(00) 0000000"/>
+       <input type="text" value="(00) 00000-0000"/>
        <label>
         Sobre (bio)
        </label>
