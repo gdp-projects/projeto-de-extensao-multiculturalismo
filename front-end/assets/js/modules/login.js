@@ -21,6 +21,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     window.location.href = "../pages/perfil_usuario/inicio.html";
   } catch (error) {
     document.getElementById("popupIncorreto").classList.add("active");
+    console.error(error);
   }
 });
 

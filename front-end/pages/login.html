@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
   <title>Login</title>
   <link rel="stylesheet" href="../assets/css/login.css">
 
@@ -89,6 +88,7 @@
   </style>
 </head>
 <body>
+
   <div class="login-container">
     <h1>Bem-vindo</h1>
     <p>Faça login para acessar seu perfil</p>
@@ -98,12 +98,9 @@
       <input type="password" id="password" placeholder="Senha" required>
       <button type="submit">Entrar</button>
     </form>
-    <!-- Nova mensagem com link para registro -->
-
     <p class="hint">Não tem conta? <a href="registro.html">Registre-se</a></p>
     <a href="../index.html" class="back-btn">Não quero entrar</a>
   </div>
-  
   <div id="popupIncorreto" class="popup-overlay" aria-hidden="true">
     <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
       <h2 id="popupTitle">Credenciais incorretas</h2>
@@ -119,7 +116,6 @@
       el.classList.add('active');
       el.setAttribute('aria-hidden', 'false');
 
-
       const btn = document.getElementById('popupCloseBtn');
       if (btn) btn.focus();
 
@@ -130,14 +126,11 @@
       if (!el) return;
       el.classList.remove('active');
       el.setAttribute('aria-hidden', 'true');
-
       const userField = document.getElementById('username');
       if (userField) userField.focus();
     }
 
     document.getElementById('popupCloseBtn').addEventListener('click', fecharPopupIncorreto);
-
-
     document.getElementById('popupIncorreto').addEventListener('click', function(e) {
       if (e.target === this) fecharPopupIncorreto();
     });
