@@ -14,7 +14,7 @@ router.get('/', eventosController.getEventos);
 router.get('/:id', eventosController.getEventoById);
 
 // Buscar por nome
-router.get('/', eventosController.getEventoByName)
+router.get('/:nome', eventosController.getEventoByName)
 
 // Listar evento por id do usuário
 router.get("/usuario/:id_usuario", usuariosMiddleware.autenticarToken, eventosController.getEventoByUserId)

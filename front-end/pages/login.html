@@ -98,11 +98,9 @@
       <input type="password" id="password" placeholder="Senha" required>
       <button type="submit">Entrar</button>
     </form>
-
     <p class="hint">Não tem conta? <a href="registro.html">Registre-se</a></p>
     <a href="../index.html" class="back-btn">Não quero entrar</a>
   </div>
-
   <div id="popupIncorreto" class="popup-overlay" aria-hidden="true">
     <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
       <h2 id="popupTitle">Credenciais incorretas</h2>
@@ -118,7 +116,6 @@
       el.classList.add('active');
       el.setAttribute('aria-hidden', 'false');
 
-    
       const btn = document.getElementById('popupCloseBtn');
       if (btn) btn.focus();
 
@@ -129,20 +126,15 @@
       if (!el) return;
       el.classList.remove('active');
       el.setAttribute('aria-hidden', 'true');
-      
       const userField = document.getElementById('username');
       if (userField) userField.focus();
     }
 
     document.getElementById('popupCloseBtn').addEventListener('click', fecharPopupIncorreto);
-
- 
     document.getElementById('popupIncorreto').addEventListener('click', function(e) {
       if (e.target === this) fecharPopupIncorreto();
     });
   </script>
-
- 
   <script src="../assets/js/modules/login.js"></script>
 </body>
 </html>
