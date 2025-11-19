@@ -32,11 +32,12 @@ document.getElementById("registerForm").addEventListener("submit", function(even
   const dados = { nome, sobrenome, email, nome_usuario, telefone, data_nascimento, senha };
   registrarUsuario(dados)
     .then(() => {
-      alert("Usuário registrado com sucesso!");
-      window.location.href = "login.html";
+      document.getElementById("popupCadastro").classList.add("active");
+      setTimeout(() => {
+        window.location.href = "../pages/login.html";
+      }, 2000);
     })
     .catch(erro => {
-      alert("Erro ao registrar usuário: " + (erro.message || erro));
     });
 });
 

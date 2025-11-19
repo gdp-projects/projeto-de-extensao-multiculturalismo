@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: #d2a676;
+  }
+
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+    z-index: 9999;
+  }
+
+  .popup-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .popup-box {
+    background: #f5e1c5;
+    width: 360px;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    text-align: center;
+    animation: shake .35s ease;
+    border-top: 6px solid #b9473b;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+    100% { transform: translateX(0); }
+  }
+
+  .popup-box h2 {
+    font-size: 22px;
+    color: #7d2e2b;
+    margin-bottom: 10px;
+  }
+
+  .popup-box p {
+    font-size: 15px;
+    color: #4a2c17;
+    margin-bottom: 20px;
+  }
+
+  .popup-btn {
+    background: #b9473b;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background .2s ease;
+  }
+
+  .popup-btn:hover {
+    background: #95372f;
+  }
+</style>
+</head>
+<body>
+
+<button onclick="abrirPopup()">Simular Usuário/Senha Incorretos</button>
+
+<div class="popup-overlay" id="popupIncorreto">
+  <div class="popup-box">
+    <h2>Credenciais incorretas</h2>
+    <p>Usuário ou senha inválidos. Verifique suas informações e tente novamente.</p>
+    <button class="popup-btn" onclick="fecharPopup()">OK</button>
+  </div>
+</div>
+
+<script>
+  function abrirPopup() {
+    document.getElementById("popupIncorreto").classList.add("active");
+  }
+  function fecharPopup() {
+    document.getElementById("popupIncorreto").classList.remove("active");
+  }
+</script>
+
+</body>
+</html>

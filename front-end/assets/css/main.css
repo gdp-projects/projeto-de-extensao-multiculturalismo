@@ -44,6 +44,7 @@ body {
   background: url("../images/header_imagem.jpg") no-repeat center/contain;
   background-color: #D9B36A; /* cor igual da borda da imagem */
   box-shadow: var(--shadow);
+  margin-bottom: 10px;
 }
 
 .faixa-superior__pattern {
@@ -71,6 +72,12 @@ body {
   padding: 14px 20px;
   width: 100%;
   max-width: 100%;
+}
+
+.topbar__logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .topbar__menu {
@@ -310,6 +317,7 @@ body {
     width: 100%;
     height: 100px;
     object-fit: cover;
+    object-position: center;
   }
 
   .conteudo {
@@ -377,8 +385,9 @@ body {
 
 .carrossel-desktop .evento img {
   width: 100%;
-  height: 150px;
+  height: 220px;
   object-fit: cover;
+  object-position: center;
 }
 
 .carrossel-desktop .conteudo {
@@ -460,13 +469,12 @@ body {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE e Edge antigos */
   transition: transform 0.4s ease;
+  max-height: 280px;
 }
 
 .faixa-eventos::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
-
-
 
 .carrossel-desktop .evento {
   flex: 0 0 260px;
@@ -479,7 +487,6 @@ body {
 .carrossel-desktop .evento img {
   width: 100%;
   height: 150px;
-  object-fit: cover;
 }
 
 .carrossel-desktop .conteudo {
