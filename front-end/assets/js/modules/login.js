@@ -20,8 +20,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
     window.location.href = "../pages/perfil_usuario/inicio.html";
   } catch (error) {
-    alert("Usuário ou senha incorretos!");
-    console.error(error);
+    document.getElementById("popupIncorreto").classList.add("active");
   }
 });
 
