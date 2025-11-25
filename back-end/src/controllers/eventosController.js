@@ -53,8 +53,8 @@ const getEventoByName = async (req, res) => {
 }
 
 const createEvento = async (req, res) => {
-    const {nome_evento, foto_local, descricao, data, hora, endereco, categoria, status, id_usuario} = req.body;
-    const evento = {nome_evento, foto_local, descricao, data, hora, endereco, categoria, status, id_usuario};
+    const {nome_evento, foto_local, descricao, data_inicio, hora_inicio, data_fim, hora_fim, endereco, categoria, status, id_usuario} = req.body;
+    const evento = {nome_evento, foto_local, descricao, data_inicio, hora_inicio, data_fim, hora_fim, endereco, categoria, status, id_usuario};
     try {
         const novoEvento = await eventosModel.createEvento(evento);
         res.status(201).json(novoEvento);

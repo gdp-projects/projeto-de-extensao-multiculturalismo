@@ -5,8 +5,10 @@ const createEvento = async (evento) => {
         nome_evento,
         foto_local = null,
         descricao = null,
-        data = null,
-        hora = null,
+        data_inicio = null,
+        hora_inicio = null,
+        data_fim = null,
+        hora_fim = null,
         endereco = null,
         categoria = [],
         status = 'ativo',
@@ -14,9 +16,9 @@ const createEvento = async (evento) => {
     } = evento;
 
     const res = await pool.query(
-        `INSERT INTO eventos (nome_evento, foto_local, descricao, data, hora, endereco, categoria, status, id_usuario)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-        [nome_evento, foto_local, descricao, data, hora, endereco, categoria, status, id_usuario]
+        `INSERT INTO eventos (nome_evento, foto_local, descricao, data_inicio, hora_inicio, data_fim, hora_fim, endereco, categoria, status, id_usuario)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+        [nome_evento, foto_local, descricao, data_inicio, hora_inicio, data_fim, hora_fim, endereco, categoria, status, id_usuario]
     );
 
     return res.rows[0];
@@ -50,12 +52,12 @@ const addIngressoToEvento = async (id_evento, id_ingresso) => {
 };
 
 const getAllEventos = async () => {
-    const res = await pool.query('SELECT * FROM eventos ORDER BY data DESC, id DESC');
+    const res = await pool.query('SELECT * FROM eventos ORDER BY data_inicio DESC, id DESC');
     return res.rows;
 };
 
 const getEventoByUserId = async (id_usuario) => {
-    const res = await pool.query('SELECT * FROM eventos WHERE id_usuario = $1 ORDER BY data DESC, id DESC', [id_usuario]);
+    const res = await pool.query('SELECT * FROM eventos WHERE id_usuario = $1 ORDER BY data_inicio DESC, id DESC', [id_usuario]);
     return res.rows;
 };
 
@@ -66,7 +68,7 @@ const getEventoById = async (id) => {
 
 const getEventoByName = async (nome_evento) => {
     const res = await pool.query(
-        "SELECT * FROM eventos WHERE nome_evento ILIKE $1 ORDER BY data DESC",
+        "SELECT * FROM eventos WHERE nome_evento ILIKE $1 ORDER BY data_inicio DESC",
         [`%${nome_evento}%`]
     );
     return res.rows;
@@ -77,12 +79,12 @@ const deleteEvento = async (id) => {
 };
 
 const updateEvento = async (id, evento) => {
-    const { foto_local, data, hora, nome_evento, descricao, link, categoria, status, endereco } = evento;
+    const { foto_local, data_inicio, data_fim, hora_inicio, hora_fim, nome_evento, descricao, link, categoria, status, endereco } = evento;
 
     const res = await pool.query(
-        `INSERT INTO eventos (foto_local, data, hora, nome_evento, descricao, link, categoria, status, fk_endereco)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-        [foto_local, data, hora, nome_evento, descricao, link, categoria, status, fk_endereco]
+        `INSERT INTO eventos (foto_local, data_inicio, data_fim, hora_inicio, hora_fim, nome_evento, descricao, link, categoria, status, fk_endereco)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+        [foto_local, data_inicio, data_fim, hora_inicio, hora_fim, nome_evento, descricao, link, categoria, status, fk_endereco]
     );
 
     return res.rows[0];

@@ -44,8 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
             foto_local: 'caminho/temporario/da/foto.jpg',
             descricao: qs('#descricao')?.value || '',
             categoria: getSelectedCategories(), // array de strings
-            data: qs('#data-inicio')?.value || null, // YYYY-MM-DD
-            hora: qs('#hora-inicio')?.value || null, // HH:MM
+            data_inicio: qs('#data-inicio')?.value || null, // YYYY-MM-DD
+            hora_inicio: qs('#hora-inicio')?.value || null, // HH:MM
+            data_fim: qs('#data-fim')?.value || null, // YYYY-MM-DD
+            hora_fim: qs('#hora-fim')?.value || null, // HH:MM
             endereco: collectEnderecoPayload(),
             status: qs('input[name="visibilidade"]:checked')?.value || 'rascunho',
             id_usuario: getUserInfo()?.id_usuario

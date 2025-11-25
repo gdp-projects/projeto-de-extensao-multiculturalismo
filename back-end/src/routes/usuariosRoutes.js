@@ -13,6 +13,9 @@ router.post('/', usuariosController.createUsuario)
 // router.put('/:id', usuariosController.updateUsuario)
 router.delete('/:id', usuariosMiddleware.autenticarToken, usuariosController.deleteUsuario)
 
+// Rota para promover usuário a organizador
+router.put('/promover-organizador/:id', usuariosController.promoverParaOrganizador)
+
 // Rota para login de usuário
 router.post('/login', usuariosController.loginUsuario)
 

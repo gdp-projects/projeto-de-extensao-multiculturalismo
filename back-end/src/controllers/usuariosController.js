@@ -129,10 +129,27 @@ const updateUsuario = async (req, res) => {
     }
 }
 
+const promoverParaOrganizador = async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    try {
+        const usuarioAtualizado = await usuariosModel.promoverParaOrganizador(id);
+        if (usuarioAtualizado) {
+            res.status(200).json(usuarioAtualizado);
+        } else {
+            res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao promover usuário para organizador' });
+    }
+};
+
 export default {
     getUsuarios,
     getUsuarioById,
     createUsuario,
     loginUsuario,
-    deleteUsuario
+    deleteUsuario,
+    updateUsuario,
+    promoverParaOrganizador
 };

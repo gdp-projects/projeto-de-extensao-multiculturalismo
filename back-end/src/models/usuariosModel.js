@@ -38,13 +38,14 @@ const deleteUsuario = async (id, nome_usuario, senha) => {
     return res.rowCount
 }
 
-const upgradeUsuarioToOrganizer = async (id_usuario) => {
+const promoverParaOrganizador = async (id_usuario) => {
     const res = await pool.query(
-        'UPDATE usuarios SET isOrganizer = TRUE WHERE id_usuario = $1 RETURNING *',
+        'UPDATE usuarios SET isorganizer = TRUE WHERE id_usuario = $1 RETURNING *',
         [id_usuario]
     );
     return res.rows[0];
-}
+};
+
 
 export default {
     getAllUsuarios,
@@ -52,5 +53,6 @@ export default {
     getUsuarioByNomeUsuario,
     createUsuario,
     findUsuarioByNome,
-    deleteUsuario
+    deleteUsuario,
+    promoverParaOrganizador
 };
