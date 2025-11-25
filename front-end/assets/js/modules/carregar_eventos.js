@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             eventsList.innerHTML = eventos.map(ev => {
                 const foto = `http://localhost:8080${ev.foto_local}` || '../../assets/images/default-event.jpg';
                 const nome = ev.nome_evento || 'Sem título';
-                const data = ev.data ? new Date(ev.data).toLocaleDateString() : '';
-                const hora = ev.hora ? ev.hora.slice(0,5) : '';
+                const data_inicio = ev.data_inicio ? new Date(ev.data_inicio).toLocaleDateString() : '';
+                const hora_inicio = ev.hora_inicio ? ev.hora_inicio.slice(0,5) : '';
                 const status = ev.status || '';
 
                 return `
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                         <div class="event-info">
                             <h2>${nome}</h2>
-                            <p>${data} • ${hora} • ${status}</p>
+                            <p>${data_inicio} • ${hora_inicio} • ${status}</p>
 
                             <div class="event-actions">
                                 <a href="#" class="btn-editar">Editar</a>

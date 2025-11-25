@@ -153,3 +153,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Se tornar organizador
+document.addEventListener('DOMContentLoaded', function() {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  if (usuario && !usuario.isorganizer) {
+    const container = document.querySelector('.become-organizer');
+    if (container) {
+      const btn = document.createElement('button');
+      const h3 = document.createElement('h3');
+      h3.textContent = 'Quer organizar eventos?';
+      container.appendChild(h3);
+      const p = document.createElement('p');
+      p.textContent = 'Torne-se um organizador e comece a criar seus próprios eventos!';
+      container.appendChild(p);
+      btn.id = 'btn-become-organizer';
+      btn.className = 'btn btn-secondary';
+      btn.textContent = 'Tornar-se Organizador';
+      container.appendChild(btn);
+    }
+    const btn_become_organizer = document.getElementById('btn-become-organizer');
+    btn_become_organizer.addEventListener('click', () => {
+      tornarOrganizador(usuario.id_usuario).then(() => {
+        alert('Parabéns! Agora você é um organizador.');
+        usuario.isorganizer = true;
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+        window.location.reload();
+      }
+      ).catch(err => {
+        console.error(err);
+        alert('Erro ao tornar-se organizador. Tente novamente mais tarde.');
+      });
+    });
+  } else {
+    const container = document.querySelector('.become-organizer');
+    if (container) {
+      container.style.display = 'none';
+    }
+  }
+});
+
+// Requisição API para se tornar organizador
+async function tornarOrganizador(id_usuario) {
+  try {
+    const response = await fetch(`http://localhost:8080/usuarios/promover-organizador/${id_usuario}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id_usuario })
+    });
+    if (!response.ok) {
+      throw new Error('Erro ao tornar-se organizador');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}

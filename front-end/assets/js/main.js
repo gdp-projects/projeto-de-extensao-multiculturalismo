@@ -136,9 +136,9 @@ const eventosProximosContainer = document.querySelector('.eventos-proximos');
 const eventosProximosContainerMobile = document.querySelector('.eventos-proximos-mobile');
 
 const dataHoje = new Date().toISOString().split('T')[0];
-const dataCincoDiasAntes = new Date();
-dataCincoDiasAntes.setDate(dataCincoDiasAntes.getDate() - 5);
-const dataCincoDiasAntesISO = dataCincoDiasAntes.toISOString().split('T')[0];
+const dataCincoDiasDepois = new Date();
+dataCincoDiasDepois.setDate(dataCincoDiasDepois.getDate() + 5);
+const dataCincoDiasDepoisISO = dataCincoDiasDepois.toISOString().split('T')[0];
 
 console.log('Data hoje:', dataHoje);
 if (eventosHojeContainer) {
@@ -150,50 +150,74 @@ if (eventosHojeContainer) {
     })
     .then(eventos => {
       console.log('Eventos recebidos:', eventos);
-      eventosHojeContainer.innerHTML = ''; // Limpa o conteúdo existente
-      eventosHojeContainerMobile.innerHTML = ''; // Limpa o conteúdo existente para mobile
+      // Limpa os containers (se existirem)
+      if (eventosHojeContainer) eventosHojeContainer.innerHTML = '';
+      if (eventosHojeContainerMobile) eventosHojeContainerMobile.innerHTML = '';
+      if (eventosProximosContainer) eventosProximosContainer.innerHTML = '';
+      if (eventosProximosContainerMobile) eventosProximosContainerMobile.innerHTML = '';
+
+      const hojeList = [];
+      const proximosList = [];
+
       eventos.slice(0, 5).forEach(evento => {
-        const dataEvento = new Date(evento.data).toISOString().split('T')[0];
+        const dataEvento = new Date(evento.data_inicio).toISOString().split('T')[0];
+
         if (dataEvento === dataHoje) {
-          const eventoDiv = document.createElement('div');
-          eventoDiv.classList.add('evento');
-          eventoDiv.innerHTML = `
-            <img src="http://localhost:8080${evento.foto_local}" alt="${evento.nome_evento}">
-            <div class="conteudo">
-              <h3>${evento.nome_evento}</h3>
-              <p>${evento.descricao}</p>
-              <span class="data">${new Date(evento.data).toLocaleDateString()}</span>
-            </div>
-          `;
-          eventosHojeContainer.appendChild(eventoDiv);
-          // Clona para o container mobile
-          const eventoDivMobile = eventoDiv.cloneNode(true);
-          eventosHojeContainerMobile.appendChild(eventoDivMobile);
-        } else {
-          eventosHojeContainer.innerHTML = '<p>Nenhum evento disponível no momento.</p>';
-          eventosHojeContainerMobile.innerHTML = '<p>Nenhum evento disponível no momento.</p>';
+          hojeList.push(evento);
         }
-        
-        if (dataEvento < dataHoje && dataEvento >= dataCincoDiasAntesISO) {
-          const eventoDiv = document.createElement('div');
-          eventoDiv.classList.add('evento');
-          eventoDiv.innerHTML = `
-            <img src="http://localhost:8080${evento.foto_local}" alt="${evento.nome_evento}">
-            <div class="conteudo">
-              <h3>${evento.nome_evento}</h3>
-              <p>${evento.descricao}</p>
-              <span class="data">${new Date(evento.data).toLocaleDateString()}</span>
-            </div>
-          `;
-          eventosProximosContainer.appendChild(eventoDiv);
-          // Clona para o container mobile
-          const eventoDivMobile = eventoDiv.cloneNode(true);
-          eventosProximosContainerMobile.appendChild(eventoDivMobile);
-        } else {
-          eventosProximosContainer.innerHTML = '<p>Nenhum evento disponível no momento.</p>';
-          eventosProximosContainerMobile.innerHTML = '<p>Nenhum evento disponível no momento.</p>';
+
+        if (dataEvento > dataHoje && dataEvento <= dataCincoDiasDepoisISO) {
+          proximosList.push(evento);
         }
       });
+
+      // Renderizar eventos de hoje
+      if (hojeList.length > 0) {
+        hojeList.forEach(evento => {
+          const eventoDiv = document.createElement('div');
+          eventoDiv.classList.add('evento');
+          eventoDiv.innerHTML = `
+            <img src="http://localhost:8080${evento.foto_local}" alt="${evento.nome_evento}">
+            <div class="conteudo">
+              <h3>${evento.nome_evento}</h3>
+              <p>${evento.descricao}</p>
+              <span class="data">${new Date(evento.data_inicio).toLocaleDateString()}</span>
+            </div>
+          `;
+          if (eventosHojeContainer) eventosHojeContainer.appendChild(eventoDiv);
+          if (eventosHojeContainerMobile && eventoDiv) {
+            const eventoDivMobile = eventoDiv.cloneNode(true);
+            eventosHojeContainerMobile.appendChild(eventoDivMobile);
+          }
+        });
+      } else {
+        if (eventosHojeContainer) eventosHojeContainer.innerHTML = '<p>Nenhum evento disponível no momento.</p>';
+        if (eventosHojeContainerMobile) eventosHojeContainerMobile.innerHTML = '<p>Nenhum evento disponível no momento.</p>';
+      }
+
+      // Renderizar eventos próximos
+      if (proximosList.length > 0) {
+        proximosList.forEach(evento => {
+          const eventoDiv = document.createElement('div');
+          eventoDiv.classList.add('evento');
+          eventoDiv.innerHTML = `
+            <img src="http://localhost:8080${evento.foto_local}" alt="${evento.nome_evento}">
+            <div class="conteudo">
+              <h3>${evento.nome_evento}</h3>
+              <p>${evento.descricao}</p>
+              <span class="data">${new Date(evento.data_inicio).toLocaleDateString()}</span>
+            </div>
+          `;
+          if (eventosProximosContainer) eventosProximosContainer.appendChild(eventoDiv);
+          if (eventosProximosContainerMobile && eventoDiv) {
+            const eventoDivMobile = eventoDiv.cloneNode(true);
+            eventosProximosContainerMobile.appendChild(eventoDivMobile);
+          }
+        });
+      } else {
+        if (eventosProximosContainer) eventosProximosContainer.innerHTML = '<p>Nenhum evento disponível no momento.</p>';
+        if (eventosProximosContainerMobile) eventosProximosContainerMobile.innerHTML = '<p>Nenhum evento disponível no momento.</p>';
+      }
     })
     .catch(error => {
       console.error('Erro ao carregar eventos:', error);
