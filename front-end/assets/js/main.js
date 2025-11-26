@@ -1,3 +1,5 @@
+const API_URL_BASE = 'http://localhost:8080/';
+
 const track = document.querySelector(".carousel-track");
 const items = Array.from(document.querySelectorAll(".carousel-item"));
 const prevBtn = document.querySelector(".prev-btn");
@@ -116,10 +118,12 @@ function usuarioLogado() {
 const topbarLogged = document.getElementById("topbar__logged");
 const topbarRegister = document.getElementById("topbar__register");
 const eventCreate = document.getElementById("create-event");
+const myEvents = document.getElementById("my-events");
   if (localStorage.getItem("token")) {
       const usuario = JSON.parse(localStorage.getItem("usuario"));
       if (!usuario.isorganizer) {
           eventCreate.style.display = "none";
+          myEvents.style.display = "none";
       }
       topbarLogged.style.display = "flex";
       topbarRegister.style.display = "none";
@@ -142,8 +146,7 @@ const dataCincoDiasDepoisISO = dataCincoDiasDepois.toISOString().split('T')[0];
 
 console.log('Data hoje:', dataHoje);
 if (eventosHojeContainer) {
-  // Use HTTP: backend runs on http://localhost:8080
-  fetch('http://localhost:8080/eventos')
+  fetch(`${API_URL_BASE}eventos`)
     .then(response => {
       if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
       return response.json();
@@ -174,10 +177,11 @@ if (eventosHojeContainer) {
       // Renderizar eventos de hoje
       if (hojeList.length > 0) {
         hojeList.forEach(evento => {
-          const eventoDiv = document.createElement('div');
+          const eventoDiv = document.createElement('a');
           eventoDiv.classList.add('evento');
+          eventoDiv.href = `./pages/evento/evento.html?eventoId=${evento.id}`;
           eventoDiv.innerHTML = `
-            <img src="http://localhost:8080${evento.foto_local}" alt="${evento.nome_evento}">
+            <img src="${API_URL_BASE}${evento.foto_local}" alt="${evento.nome_evento}">
             <div class="conteudo">
               <h3>${evento.nome_evento}</h3>
               <p>${evento.descricao}</p>
@@ -198,15 +202,17 @@ if (eventosHojeContainer) {
       // Renderizar eventos próximos
       if (proximosList.length > 0) {
         proximosList.forEach(evento => {
-          const eventoDiv = document.createElement('div');
+          console.log('Evento próximo:', evento);
+          const eventoDiv = document.createElement('a');
           eventoDiv.classList.add('evento');
+          eventoDiv.href = `./pages/evento/evento.html?eventoId=${evento.id}`;
           eventoDiv.innerHTML = `
-            <img src="http://localhost:8080${evento.foto_local}" alt="${evento.nome_evento}">
-            <div class="conteudo">
-              <h3>${evento.nome_evento}</h3>
-              <p>${evento.descricao}</p>
-              <span class="data">${new Date(evento.data_inicio).toLocaleDateString()}</span>
-            </div>
+              <img src="${API_URL_BASE}${evento.foto_local}" alt="${evento.nome_evento}">
+              <div class="conteudo">
+                <h3>${evento.nome_evento}</h3>
+                <p>${evento.descricao}</p>
+                <span class="data">${new Date(evento.data_inicio).toLocaleDateString()}</span>
+              </div>
           `;
           if (eventosProximosContainer) eventosProximosContainer.appendChild(eventoDiv);
           if (eventosProximosContainerMobile && eventoDiv) {
@@ -226,7 +232,41 @@ if (eventosHojeContainer) {
   console.warn('Container .eventos-hoje não encontrado no DOM.');
 }
 
+// Função para alterar foto de perfil no topbar
+function atualizarAvatar() {
+  const avatarBtn = document.querySelector(".avatar");
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  if (avatarBtn && usuario && usuario.foto) {
+    avatarBtn.style.background = `url('${API_URL_BASE}${usuario.foto}')`;
+  } else {
+    console.warn('Avatar button or user photo not found.');
+  }
+}
+
+// Clicar no avatar abre o perfil
+const avatarBtn = document.querySelector(".avatar");
+if (avatarBtn) {
+  avatarBtn.addEventListener("click", () => {
+    window.location.href = "./pages/perfil_usuario/inicio.html";
+  }
+);
+}
+
+// Função de busca de eventos
+const searchForm = document.getElementById("search-form");
+if (searchForm) {
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const query = searchForm.querySelector(".search__input").value.trim();
+    if (query) {
+      window.location.href = `./pages/pesquisa/pesquisa.html?query=${encodeURIComponent(query)}`;
+    }
+  });
+}
+
 // Início
+console.log(localStorage.getItem("usuario"));
+atualizarAvatar();
 updateCarousel();
 startAutoPlay();
 usuarioLogado();

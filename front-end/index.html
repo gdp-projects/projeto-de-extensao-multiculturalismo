@@ -24,7 +24,7 @@
     </nav>
     <nav id="topbar__logged" class="topbar__menu" aria-label="Menu do usuário">
       <a id="create-event" href="pages/criar_evento/criarevento.html" class="topbar__link">Criar evento</a>
-      <a href="pages/registro.html" class="topbar__link">Meus eventos</a>
+      <a id="my-events" href="pages/perfil_usuario/eventos.html" class="topbar__link">Meus eventos</a>
       <a href="pages/registro.html" class="topbar__link">Meus ingressos</a>
       <button class="avatar" aria-label="Abrir perfil"></button>
     </nav>
@@ -32,7 +32,7 @@
 
   <section class="hero container">
 
-    <form class="search" role="search" aria-label="Busca de eventos">
+    <form class="search" id="search-form" role="search" aria-label="Busca de eventos">
       <input class="search__input" type="search" placeholder="Pesquisar eventos" aria-label="Pesquisar" />
       <button class="search__btn" type="submit" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
@@ -40,7 +40,7 @@
     <div class="chips" role="list" aria-label="Filtros rápidos">
       <button class="chip" role="listitem"><i class="fa-solid fa-location-dot"></i> Perto de você</button>
       <button class="chip" role="listitem"><i class="fa-solid fa-users"></i> Mais procurados</button>
-      <button class="chip chip--active" role="listitem"><i class="fa-solid fa-handshake"></i> Novidades</button>
+      <button class="chip" role="listitem"><i class="fa-solid fa-handshake"></i> Novidades</button>
       <button class="chip" role="listitem"><i class="fa-solid fa-gift"></i> Para você</button>
     </div>
   </section>

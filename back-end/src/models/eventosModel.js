@@ -90,6 +90,14 @@ const updateEvento = async (id, evento) => {
     return res.rows[0];
 };
 
+const pesquisarEventos = async (query) => {
+    const res = await pool.query(
+        "SELECT * FROM eventos WHERE nome_evento ILIKE $1 OR descricao ILIKE $1 ORDER BY data_inicio DESC",
+        [`%${query}%`]
+    );
+    return res.rows;
+};
+
 export default {
     createEvento,
     createIngresso,
@@ -100,5 +108,6 @@ export default {
     getEventoByName,
     getEventoByUserId,
     deleteEvento,
-    updateEvento
+    updateEvento,
+    pesquisarEventos
 };

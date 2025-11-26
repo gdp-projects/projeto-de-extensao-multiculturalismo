@@ -35,27 +35,3 @@ CREATE TABLE IF NOT EXISTS eventos (
   id_usuario INTEGER NOT NULL REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
   criado_em TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
-
--- ===========================
--- TABELA: ingressos
--- ===========================
-CREATE TABLE IF NOT EXISTS ingressos (
-  id SERIAL PRIMARY KEY,
-  nome VARCHAR(255) NOT NULL,
-  tipo VARCHAR(100) NOT NULL,
-  preco NUMERIC(10,2) NOT NULL DEFAULT 0.00,
-  quantidade INTEGER NOT NULL DEFAULT 0,
-  fk_evento INTEGER NOT NULL REFERENCES eventos(id) ON DELETE CASCADE,
-  criado_em TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
-);
-
--- ===========================
--- TABELA ASSOCIATIVA: organizador_evento
--- ===========================
-CREATE TABLE IF NOT EXISTS organizador_evento (
-  id SERIAL PRIMARY KEY,
-  id_evento INTEGER NOT NULL REFERENCES eventos(id) ON DELETE CASCADE,
-  id_usuario INTEGER NOT NULL REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-  criado_em TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
-  UNIQUE (id_evento, id_usuario)
-);

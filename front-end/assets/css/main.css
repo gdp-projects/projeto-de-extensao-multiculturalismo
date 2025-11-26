@@ -106,6 +106,7 @@ body {
   border: 2px solid #6a3c1c;
   background: linear-gradient(#eee, #ccc);
   cursor: pointer;
+  background-size: cover !important;
 }
 
 /* Exceções: hero e carrossel ocupam largura total */

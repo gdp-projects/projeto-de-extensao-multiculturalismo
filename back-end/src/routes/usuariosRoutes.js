@@ -16,6 +16,9 @@ router.delete('/:id', usuariosMiddleware.autenticarToken, usuariosController.del
 // Rota para promover usuário a organizador
 router.put('/promover-organizador/:id', usuariosController.promoverParaOrganizador)
 
+// Rota para alterar a foto de perfil do usuário
+router.put('/foto/:id', usuariosMiddleware.autenticarToken, usuariosController.alterarFotoPerfil);
+
 // Rota para login de usuário
 router.post('/login', usuariosController.loginUsuario)
 

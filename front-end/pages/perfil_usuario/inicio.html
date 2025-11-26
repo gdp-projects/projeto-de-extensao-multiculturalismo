@@ -50,11 +50,6 @@
       </i>
       Meus Eventos
      </a>
-     <a class="nav-item" href="perfil.html">
-      <i class="fa-solid fa-user-pen">
-      </i>
-      Perfil
-     </a>
      <a class="nav-item organizer" href="relatorios.html">
       <i class="fa-solid fa-chart-line">
       </i>
@@ -136,6 +131,73 @@
       </div>
      </div>
     </section>
+    <aside class="profile-summary card">
+      <div class="avatar-large" id="avatar-image-input">
+        <img src="https://placehold.co/200x200.png" alt="" class="avatar-photo" id="foto-perfil">
+        <div class="avatar-icon"> </div>
+      </div>
+      <h3>
+       <span id="user-full-name"></span>
+      </h3>
+      <p class="muted">
+       <span id="organizer"></span>
+       •
+       <strong>
+        <span id="account-tier"></span>
+       </strong>
+      </p>
+      <div class="profile-stats">
+       <div>
+        <strong id="eventos-criados-count">
+        </strong>
+        <small>
+         Eventos
+        </small>
+       </div>
+       <div>
+        <strong>
+         0
+        </strong>
+        <small>
+         Inscritos
+        </small>
+       </div>
+       <div>
+        <strong>
+         R$0
+        </strong>
+        <small>
+         Vendas
+        </small>
+       </div>
+      </div>
+      <!-- Substituição do botão "Ver conta" pela verificação -->
+      <form class="profile-form" id="verifyForm">
+       <label for="phone">
+        Número de telefone
+       </label>
+       <input id="phone" name="phone" placeholder="+55 75 9XXXX-XXXX" required="" type="tel"/>
+       <!-- Recaptcha é obrigatório no Firebase Phone Auth -->
+       <div id="recaptcha-container">
+       </div>
+       <button class="btn-block" type="submit">
+        Enviar código
+       </button>
+       <p class="muted" id="verifyMessage">
+       </p>
+      </form>
+      <form class="profile-form" id="codeForm" style="display:none; margin-top:12px;">
+       <label for="code">
+        Digite o código recebido
+       </label>
+       <input id="code" name="code" placeholder="123456" required="" type="text"/>
+       <button class="btn-block" type="submit">
+        Confirmar código
+       </button>
+       <p class="muted" id="codeMessage">
+       </p>
+      </form>
+     </aside>
     <section class="cards">
      <article class="card color1">
       <i class="card-icon fa-solid fa-calendar-days">

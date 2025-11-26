@@ -1,3 +1,4 @@
+const API_URL_BASE = 'http://localhost:8080/';
 // Função para carregar eventos do usuário e exibi-los na página
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            const resp = await fetch(`http://localhost:8080/eventos/usuario/${idUsuario}`, {
+            const resp = await fetch(`${API_URL_BASE}eventos/usuario/${idUsuario}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Renderiza lista de eventos
             eventsList.innerHTML = eventos.map(ev => {
-                const foto = `http://localhost:8080${ev.foto_local}` || '../../assets/images/default-event.jpg';
+                const foto = `${API_URL_BASE}${ev.foto_local}` || '../../assets/images/default-event.jpg';
                 const nome = ev.nome_evento || 'Sem título';
                 const data_inicio = ev.data_inicio ? new Date(ev.data_inicio).toLocaleDateString() : '';
                 const hora_inicio = ev.hora_inicio ? ev.hora_inicio.slice(0,5) : '';
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                             <div class="event-actions">
                                 <a href="#" class="btn-editar">Editar</a>
-                                <a href="#" class="btn-ver">Ver</a>
+                                <a href="../evento/evento.html?eventoId=${ev.id}" class="btn-ver">Ver</a>
                             </div>
                         </div>
                     </div>`;

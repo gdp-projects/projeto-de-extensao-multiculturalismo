@@ -31,11 +31,11 @@ const getUsuarioById = async (req, res) => {
 };
 
 const createUsuario = async (req, res) => {
-    const { nome, sobrenome, email, nome_usuario, telefone, data_nascimento, senha } = req.body;
+    const { nome, sobrenome, email, nome_usuario, telefone, data_nascimento, senha, foto } = req.body;
     const salts = 10; // Força do hash
     try {
         const senhaCrypt = await bcrypt.hash(senha, salts); // Cria a criptografia
-        const usuario = { nome, sobrenome, email, nome_usuario, telefone, data_nascimento, senha: senhaCrypt };
+        const usuario = { nome, sobrenome, email, nome_usuario, telefone, data_nascimento, senha: senhaCrypt, foto: "" };
         const novoUsuario = await usuarioModel.createUsuario(usuario);
         res.status(201).json(novoUsuario);
     } catch (error) {
@@ -144,6 +144,22 @@ const promoverParaOrganizador = async (req, res) => {
     }
 };
 
+const alterarFotoPerfil = async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const { foto_perfil } = req.body; // Supondo que a foto de perfil seja enviada no corpo da requisição
+    try {
+        const usuarioAtualizado = await usuariosModel.alterarFotoPerfil(id, foto_perfil);
+        if (usuarioAtualizado) {
+            res.status(200).json(usuarioAtualizado);
+        } else {
+            res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao alterar foto de perfil' });
+    }
+};
+
 export default {
     getUsuarios,
     getUsuarioById,
@@ -151,5 +167,6 @@ export default {
     loginUsuario,
     deleteUsuario,
     updateUsuario,
-    promoverParaOrganizador
+    promoverParaOrganizador,
+    alterarFotoPerfil
 };

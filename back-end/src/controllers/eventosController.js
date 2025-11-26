@@ -24,6 +24,13 @@ const getEventoByUserId = async (req, res) => {
 
 const getEventoById = async (req, res) => {
     const id = parseInt(req.params.id, 10);
+
+    // Validação: evita enviar NaN para o banco
+    if (Number.isNaN(id)) {
+        console.warn(`Requisição com id inválido: ${req.params.id}`);
+        return res.status(400).json({ error: 'ID inválido' });
+    }
+
     try {
         const evento = await eventosModel.getEventoById(id);
         if (evento) {
@@ -105,6 +112,17 @@ const updateEvento = async (req, res) => {
     }
 };
 
+const pesquisarEventos = async (req, res) => {
+    const query = req.query.query || '';
+    try {
+        const eventos = await eventosModel.pesquisarEventos(query);
+        res.status(200).json(eventos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao pesquisar eventos' });
+    }
+};
+
 export default {
     createEvento, 
     getEventos, 
@@ -113,5 +131,6 @@ export default {
     getEventoByUserId,
     deleteEvento,
     updateEvento,
-    addOrganizadorToEvento
+    addOrganizadorToEvento,
+    pesquisarEventos
 };

@@ -6,10 +6,15 @@ document.querySelectorAll('.carrossel-desktop').forEach(carrossel => {
 
   if (!faixa || !btnEsq || !btnDir) return;
 
-  // Ativa rolagem interna, mas bloqueia interação do mouse
+  // Ativa rolagem interna; permite interações (cliques) nos elementos filhos.
+  // Antes aqui era usado `pointerEvents = "none"` para bloquear arrastar manual,
+  // porém isso também impedia cliques nos eventos. Para manter boa UX, permitimos
+  // pointer events e evitamos seleção de texto durante arraste com userSelect.
   faixa.style.overflowX = "auto";
   faixa.style.scrollBehavior = "smooth";
-  faixa.style.pointerEvents = "none"; // bloqueia arrastar manual
+  faixa.style.pointerEvents = "auto"; // permite clicks nos itens do carrossel
+  faixa.style.userSelect = "none"; // evita seleção indesejada ao arrastar
+  // Previne scroll por roda do mouse se quiser manter controle apenas pelas setas
   faixa.addEventListener("wheel", e => e.preventDefault(), { passive: false });
 
   const scrollStep = () => faixa.querySelector('.evento')?.offsetWidth + 18 || 260;

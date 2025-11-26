@@ -32,7 +32,6 @@ document.getElementById("registerForm").addEventListener("submit", function(even
   const dados = { nome, sobrenome, email, nome_usuario, telefone, data_nascimento, senha };
   registrarUsuario(dados)
     .then(() => {
-      alert("Registro bem-sucedido! Redirecionando para a página de login...");
       const popup = document.getElementById("popupCadastro");
       if (popup) {
         try {

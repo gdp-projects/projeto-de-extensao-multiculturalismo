@@ -54,11 +54,11 @@
                         <label for="cat-esporte">ESPORTE</label>
                         <input type="checkbox" id="cat-cultura" name="categoria" value="cultura">
                         <label for="cat-cultura">CULTURA</label>
-                        <input type="checkbox" id="cat-musica" name="categoria" value="musica">
+                        <input type="checkbox" id="cat-musica" name="categoria" value="música">
                         <label for="cat-musica">MÚSICA</label>
-                        <input type="checkbox" id="cat-danca" name="categoria" value="danca">
+                        <input type="checkbox" id="cat-danca" name="categoria" value="dança">
                         <label for="cat-danca">DANÇA</label>
-                        <input type="checkbox" id="cat-tradicao" name="categoria" value="tradicao">
+                        <input type="checkbox" id="cat-tradicao" name="categoria" value="tradição">
                         <label for="cat-tradicao">TRADIÇÃO</label>
                         <input type="checkbox" id="cat-outros" name="categoria" value="outros">
                         <label for="cat-outros">OUTROS</label>
@@ -83,12 +83,12 @@
                         <input type="time" id="hora-inicio" name="hora-inicio" value="18:30" required>
                     </div>
                     <div class="form-group">
-                        <label for="data-termino">Data de Término *</label>
-                        <input type="date" id="data-termino" name="data-termino" value="2025-10-20" required>
+                        <label for="data-fim">Data de Término *</label>
+                        <input type="date" id="data-fim" name="data-fim" value="2025-10-20" required>
                     </div>
                     <div class="form-group">
-                        <label for="hora-termino">Hora de Término *</label>
-                        <input type="time" id="hora-termino" name="hora-termino" value="18:30" required>
+                        <label for="hora-fim">Hora de Término *</label>
+                        <input type="time" id="hora-fim" name="hora-fim" value="18:30" required>
                     </div>
                 </div>
             </section>
@@ -116,8 +116,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="cep">CEP</label>
-                    <input type="tel" id="cep" name="cep" placeholder="Apenas números">
+                    <label for="cep">CEP *</label>
+                    <input type="number" id="cep" name="cep" placeholder="Apenas números" required>
                 </div>
 
                 <div class="form-group-inline">
@@ -127,7 +127,7 @@
                     </div>
                     <div class="form-group" style="flex: 1;">
                         <label for="numero">Número</label>
-                        <input type="text" id="numero" name="numero">
+                        <input type="number" id="numero" name="numero">
                     </div>
                 </div>
 
@@ -138,8 +138,8 @@
 
                 <div class="form-group-inline">
                     <div class="form-group">
-                        <label for="bairro">Bairro</label>
-                        <input type="text" id="bairro" name="bairro">
+                        <label for="bairro">Bairro *</label>
+                        <input type="text" id="bairro" name="bairro" required>
                     </div>
                     <div class="form-group">
                         <label for="cidade">Cidade *</label>
@@ -228,7 +228,7 @@
                     </label>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="visibility-label">Visibilidade do evento:</label>
                     <div class="radio-group">
                         <input type="radio" id="publico" name="visibilidade" value="publico" checked>
@@ -236,10 +236,10 @@
                         <input type="radio" id="privado" name="visibilidade" value="privado">
                         <label for="privado">Privado</label>
                     </div>
-                </div>
+                </div> -->
             </section>
 
-            <section class="form-section">
+            <!-- <section class="form-section">
                 <div class="section-header">
                     <i class="material-icons">star</i>
                     <h2>7. Impulsione seu Evento</h2>
@@ -254,7 +254,7 @@
                     e em nossas campanhas de marketing, alcançando milhares de pessoas a mais.
                     <a href="#">Saiba mais sobre as vantagens.</a>
                 </p>
-            </section>
+            </section> -->
 
         </form>
     </main>

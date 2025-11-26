@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações do Evento</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="evento_informacoes.css">
+    <link rel="stylesheet" href="evento.css">
 </head>
 <body>
 
@@ -16,30 +16,28 @@
         
         <h1>Informações do Evento</h1>
         
-        <div class="user-profile">
-            <span>JP</span>
+        <div class="user-profile avatar" style="background-size: cover !important;" id="user-avatar" title="Perfil">
         </div>
     </header>
 
     <main class="event-details-container">
-        
         <div class="event-banner">
             <img src="https://via.placeholder.com/1200x400/7D4F2C/FFFFFF?text=Evento+Cultural" alt="Imagem do evento" class="banner-image">
             <div class="event-title-overlay">
                 <h1 class="event-title">Festival de Música e Dança Multicultural</h1>
+                <h3 class="event-creator">Criado por: <span id="event-creator-name"></span></h3>
             </div>
         </div>
 
         <!-- Container principal de conteúdo -->
         <div class="event-content">
-
             <!-- Seção de informações rápidas -->
             <section class="quick-info">
                 <div class="info-card">
                     <i class="material-icons">calendar_today</i>
                     <div class="info-text">
                         <p class="info-label">Data e Horário</p>
-                        <p class="info-value">18 de Outubro de 2025 • 18:30 - 22:30</p>
+                        <p class="info-value event-date">18 de Outubro de 2025 • 18:30 - 22:30</p>
                     </div>
                 </div>
 
@@ -47,15 +45,15 @@
                     <i class="material-icons">location_on</i>
                     <div class="info-text">
                         <p class="info-label">Local</p>
-                        <p class="info-value">Centro de Convenções</p>
+                        <p class="info-value event-location">Centro de Convenções</p>
                     </div>
                 </div>
                 
                 <div class="info-card">
                     <i class="material-icons">local_offer</i>
                     <div class="info-text">
-                        <p class="info-label">Categoria</p>
-                        <p class="info-value">Cultura, Música</p>
+                        <p class="info-label">Categoria(s)</p>
+                        <p class="info-value event-categories">Cultura, Música</p>
                     </div>
                 </div>
             </section>
@@ -66,7 +64,7 @@
                     <i class="material-icons">description</i>
                     <h2>Sobre o Evento</h2>
                 </div>
-                <p class="section-content">
+                <p class="section-content event-description">
                     Venha participar do nosso Festival de Música e Dança Multicultural, um evento que celebra a diversidade cultural 
                     através de apresentações artísticas de diferentes comunidades. Será uma noite inesquecível com músicas, danças e 
                     muita energia positiva. O evento contará com apresentações de artistas locais e internacionais, oficinas interativas 
@@ -84,15 +82,22 @@
                 <div class="location-details">
                     <div class="location-item">
                         <p class="location-label">Nome do Local:</p>
-                        <p class="location-value">Centro de Convenções da Cidade</p>
+                        <p class="location-value event-location-local"></p>
                     </div>
                     <div class="location-item">
                         <p class="location-label">Endereço Completo:</p>
-                        <p class="location-value">Avenida Paulista, 1000 - Apto 500 | Bela Vista | Salvador - BA | CEP: 01311-100</p>
+                        <p class="location-value event-location-address"></p>
                     </div>
-                    <div class="location-map-placeholder">
-                        <i class="material-icons">map</i>
-                        <p>Mapa interativo será exibido aqui</p>
+                    <div class="location-map-container">
+                        <iframe
+                            class="location-map-iframe"
+                            width="100%"
+                            height="450"
+                            style="border:0"
+                            loading="lazy"
+                            allowfullscreen
+                            src="https://www.google.com/maps?q=Teste%20da%20Rua,%2045,%20Teste%20Bairro,%20Conceição%20do%20Almeida,%20BA&output=embed">
+                        </iframe>
                     </div>
                 </div>
             </section>
@@ -111,6 +116,6 @@
         <p>&copy; 2025 Plataforma Simbora. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="evento_informacoes.js"></script>
+    <script src="evento.js"></script>
 </body>
 </html>

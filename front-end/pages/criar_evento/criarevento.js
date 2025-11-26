@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return {
             nome_evento: qs('#nome-evento')?.value || '',
             foto_local: 'caminho/temporario/da/foto.jpg',
-            descricao: qs('#descricao')?.value || '',
+            descricao: qs('#descricao-evento')?.value || '',
             categoria: getSelectedCategories(), // array de strings
             data_inicio: qs('#data-inicio')?.value || null, // YYYY-MM-DD
             hora_inicio: qs('#hora-inicio')?.value || null, // HH:MM

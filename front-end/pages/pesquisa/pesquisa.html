@@ -19,14 +19,14 @@
 
     <div class="topbar container">
         <nav id="topbar__register" class="topbar__menu" aria-label="Menu de navegação">
-            <a href="../registro.html" class="topbar__link">Cadastre-se</a>
-            <a href="../login.html" class="topbar__link">Login</a>
+        <a href="/front-end/pages/registro.html" class="topbar__link">Cadastre-se</a>
+        <a href="/front-end/pages/login.html" class="topbar__link">Login</a>
         </nav>
         <nav id="topbar__logged" class="topbar__menu" aria-label="Menu do usuário">
-            <a id="create-event" href="../criar_evento/criarevento.html" class="topbar__link">Criar evento</a>
-            <a href="../registro.html" class="topbar__link">Meus eventos</a>
-            <a href="../registro.html" class="topbar__link">Meus ingressos</a>
-            <button class="avatar" aria-label="Abrir perfil"></button>
+        <a id="create-event" href="/front-end/pages/criar_evento/criarevento.html" class="topbar__link">Criar evento</a>
+        <a id="my-events" href="/front-end/pages/perfil_usuario/eventos.html" class="topbar__link">Meus eventos</a>
+        <a href="/front-end/pages/registro.html" class="topbar__link">Meus ingressos</a>
+        <button class="avatar" aria-label="Abrir perfil"></button>
         </nav>
     </div>
 
@@ -36,7 +36,7 @@
             <h1 class="search-title">Encontre seu evento perfeito</h1>
             
             <!-- Barra de pesquisa expandida -->
-            <form class="search-expanded" role="search" aria-label="Busca avançada de eventos">
+            <form id="search-form" class="search-expanded" role="search" aria-label="Busca avançada de eventos">
                 <div class="search-input-group">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     <input class="search-input" type="search" placeholder="Pesquisar eventos, artistas, locais..." aria-label="Pesquisar" id="search-input" />
@@ -76,11 +76,11 @@
                 </div>
 
                 <!-- Filtro por Categoria -->
-                <div class="filter-group">
+                <div class="filter-group category-filter">
                     <h3 class="filter-group-title">
                         <i class="fa-solid fa-tag"></i> Categoria
                     </h3>
-                    <div class="filter-options">
+                    <div class="filter-options category-options" id="category-filter">
                         <label class="filter-checkbox">
                             <input type="checkbox" name="category" value="esporte">
                             <span>Esporte</span>
@@ -90,15 +90,15 @@
                             <span>Cultura</span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="category" value="musica">
+                            <input type="checkbox" name="category" value="música">
                             <span>Música</span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="category" value="danca">
+                            <input type="checkbox" name="category" value="dança">
                             <span>Dança</span>
                         </label>
                         <label class="filter-checkbox">
-                            <input type="checkbox" name="category" value="tradicao">
+                            <input type="checkbox" name="category" value="tradição">
                             <span>Tradição</span>
                         </label>
                         <label class="filter-checkbox">
@@ -141,7 +141,7 @@
                 <!-- Controles de resultado -->
                 <div class="results-controls">
                     <div class="results-info">
-                        <p class="results-count">Exibindo <strong>24</strong> de <strong>156</strong> eventos</p>
+                        <p class="results-count">Exibindo <strong id="total-eventos-busca"></strong> evento(s)</p>
                     </div>
                     <div class="results-options">
                         <label class="sort-label">Ordenar por:</label>
@@ -156,188 +156,9 @@
 
                 <!-- Grid de eventos -->
                 <div class="events-grid">
-                    <!-- Card de evento 1 -->
-                    <article class="event-card">
-                        <div class="event-card-image">
-                            <img src="https://via.placeholder.com/250x180/7D4F2C/FFFFFF?text=Evento+1" alt="Festival de Música">
-                            <div class="event-card-overlay">
-                                <button class="btn-favorite">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                            <span class="event-badge trending">Tendência</span>
-                        </div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Festival de Música Multicultural</h3>
-                            <p class="event-card-date">
-                                <i class="fa-solid fa-calendar"></i> 25 nov - 27 nov
-                            </p>
-                            <p class="event-card-location">
-                                <i class="fa-solid fa-location-dot"></i> Salvador, BA
-                            </p>
-                            <button class="btn-view-event">Ver detalhes</button>
-                        </div>
-                    </article>
-
-                    <!-- Card de evento 2 -->
-                    <article class="event-card">
-                        <div class="event-card-image">
-                            <img src="https://via.placeholder.com/250x180/C8956B/FFFFFF?text=Evento+2" alt="Show de Dança">
-                            <div class="event-card-overlay">
-                                <button class="btn-favorite">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                            <span class="event-badge free">Gratuito</span>
-                        </div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Show de Dança Brasileira</h3>
-                            <p class="event-card-date">
-                                <i class="fa-solid fa-calendar"></i> 28 nov
-                            </p>
-                            <p class="event-card-location">
-                                <i class="fa-solid fa-location-dot"></i> Feira de Santana, BA
-                            </p>
-                            <button class="btn-view-event">Ver detalhes</button>
-                        </div>
-                    </article>
-
-                    <!-- Card de evento 3 -->
-                    <article class="event-card">
-                        <div class="event-card-image">
-                            <img src="https://via.placeholder.com/250x180/D4C4B0/2b2016?text=Evento+3" alt="Conferência">
-                            <div class="event-card-overlay">
-                                <button class="btn-favorite">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Conferência de Cultura Digital</h3>
-                            <p class="event-card-date">
-                                <i class="fa-solid fa-calendar"></i> 30 nov - 01 dez
-                            </p>
-                            <p class="event-card-location">
-                                <i class="fa-solid fa-location-dot"></i> Santo Estêvão, BA
-                            </p>
-                            <button class="btn-view-event">Ver detalhes</button>
-                        </div>
-                    </article>
-
-                    <!-- Card de evento 4 -->
-                    <article class="event-card">
-                        <div class="event-card-image">
-                            <img src="https://via.placeholder.com/250x180/917758/FFFFFF?text=Evento+4" alt="Festa Tradicional">
-                            <div class="event-card-overlay">
-                                <button class="btn-favorite">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                            <span class="event-badge new">Novo</span>
-                        </div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Festa de São João Tradicional</h3>
-                            <p class="event-card-date">
-                                <i class="fa-solid fa-calendar"></i> 02 dez - 10 dez
-                            </p>
-                            <p class="event-card-location">
-                                <i class="fa-solid fa-location-dot"></i> Serrinha, BA
-                            </p>
-                            <button class="btn-view-event">Ver detalhes</button>
-                        </div>
-                    </article>
-
-                    <!-- Card de evento 5 -->
-                    <article class="event-card">
-                        <div class="event-card-image">
-                            <img src="https://via.placeholder.com/250x180/E0B98D/2b2016?text=Evento+5" alt="Competição Esportiva">
-                            <div class="event-card-overlay">
-                                <button class="btn-favorite">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Competição de Futebol Amador</h3>
-                            <p class="event-card-date">
-                                <i class="fa-solid fa-calendar"></i> 03 dez
-                            </p>
-                            <p class="event-card-location">
-                                <i class="fa-solid fa-location-dot"></i> Jequié, BA
-                            </p>
-                            <button class="btn-view-event">Ver detalhes</button>
-                        </div>
-                    </article>
-
-                    <!-- Card de evento 6 -->
-                    <article class="event-card">
-                        <div class="event-card-image">
-                            <img src="https://via.placeholder.com/250x180/C09461/FFFFFF?text=Evento+6" alt="Exibição de Arte">
-                            <div class="event-card-overlay">
-                                <button class="btn-favorite">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                            <span class="event-badge trending">Tendência</span>
-                        </div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Exibição de Arte Contemporânea</h3>
-                            <p class="event-card-date">
-                                <i class="fa-solid fa-calendar"></i> 04 dez - 15 dez
-                            </p>
-                            <p class="event-card-location">
-                                <i class="fa-solid fa-location-dot"></i> Vitória da Conquista, BA
-                            </p>
-                            <button class="btn-view-event">Ver detalhes</button>
-                        </div>
-                    </article>
-
-                    <!-- Cards adicionais para preencher a grid -->
-                    <article class="event-card">
-                        <div class="event-card-image">
-                            <img src="https://via.placeholder.com/250x180/d7b06b/2b2016?text=Evento+7" alt="Workshop">
-                            <div class="event-card-overlay">
-                                <button class="btn-favorite">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Workshop de Música Brasileira</h3>
-                            <p class="event-card-date">
-                                <i class="fa-solid fa-calendar"></i> 05 dez
-                            </p>
-                            <p class="event-card-location">
-                                <i class="fa-solid fa-location-dot"></i> Ilhéus, BA
-                            </p>
-                            <button class="btn-view-event">Ver detalhes</button>
-                        </div>
-                    </article>
-
-                    <article class="event-card">
-                        <div class="event-card-image">
-                            <img src="https://via.placeholder.com/250x180/E9E6E1/2b2016?text=Evento+8" alt="Encontro Cultural">
-                            <div class="event-card-overlay">
-                                <button class="btn-favorite">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </div>
-                            <span class="event-badge free">Gratuito</span>
-                        </div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Encontro de Culturas Multiartes</h3>
-                            <p class="event-card-date">
-                                <i class="fa-solid fa-calendar"></i> 06 dez
-                            </p>
-                            <p class="event-card-location">
-                                <i class="fa-solid fa-location-dot"></i> Itabuna, BA
-                            </p>
-                            <button class="btn-view-event">Ver detalhes</button>
-                        </div>
-                    </article>
                 </div>
 
-                <!-- Paginação -->
+                <!-- Paginação
                 <div class="pagination">
                     <button class="pagination-btn prev" aria-label="Página anterior">
                         <i class="fa-solid fa-chevron-left"></i>
@@ -351,7 +172,7 @@
                     <button class="pagination-btn next" aria-label="Próxima página">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
-                </div>
+                </div> -->
             </main>
         </div>
     </section>

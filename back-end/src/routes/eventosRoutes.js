@@ -10,6 +10,9 @@ router.post('/', usuariosMiddleware.autenticarToken, usuariosMiddleware.autentic
 // Listar todos
 router.get('/', eventosController.getEventos);
 
+// Pesquisar eventos
+router.get('/pesquisa', eventosController.pesquisarEventos);
+
 // Buscar por ID
 router.get('/:id', eventosController.getEventoById);
 

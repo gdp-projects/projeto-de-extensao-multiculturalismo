@@ -1,3 +1,5 @@
+const API_URL_BASE = 'http://localhost:8080/';
+
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const logoutBtns = document.querySelectorAll(".logout"); // todos botões sair
@@ -32,6 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
   safeSetTextById('username', usuario?.nome_usuario ?? '');
   safeSetTextById('organizer', usuario?.isorganizer ? 'Organizador' : 'Usuário');
   safeSetTextById('account-tier', usuario?.ispremium ? 'Premium' : 'Grátis');
+
+  // Atualiza foto de perfil
+  const fotoPerfil = document.getElementById('foto-perfil');
+  console.log('Usuario foto_perfil:', usuario);
+  if (fotoPerfil && usuario?.foto) {
+    const fotoUrl = `${API_URL_BASE}${usuario.foto}`;
+    fotoPerfil.src = fotoUrl;
+  }
 
   if (!usuario?.isorganizer) {
     const organizerElements = document.querySelectorAll('.organizer');
@@ -196,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Requisição API para se tornar organizador
 async function tornarOrganizador(id_usuario) {
   try {
-    const response = await fetch(`http://localhost:8080/usuarios/promover-organizador/${id_usuario}`, {
+    const response = await fetch(`${API_URL_BASE}usuarios/promover-organizador/${id_usuario}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -210,3 +220,107 @@ async function tornarOrganizador(id_usuario) {
     console.error(error);
   }
 }
+
+// Atualizar contagem de eventos criados
+const atualizarContagemEventosCriados = async () => {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const token = localStorage.getItem("token");
+  if (!usuario) return;
+  const response = await fetch(`${API_URL_BASE}eventos/usuario/${usuario.id_usuario}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      }
+  });
+  if (response.ok) {
+    const eventos = await response.json();
+    const contagemElement = document.getElementById('eventos-criados-count');
+    if (contagemElement) {
+      contagemElement.textContent = eventos.length;
+    }
+  }
+};
+
+// Função para clicar na foto de perfil e abrir seletor de arquivo
+const fotoPerfil = document.getElementById('foto-perfil');
+if (fotoPerfil) {
+  fotoPerfil.addEventListener('click', () => {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    if (!usuario) {
+      alert('Você precisa estar logado para alterar a foto de perfil.');
+      window.location.href = "../login.html";
+      return;
+    }
+
+    const inputFile = document.createElement('input');
+    inputFile.type = 'file';
+    inputFile.accept = 'image/*';
+    inputFile.click();
+    inputFile.addEventListener('change', async () => {
+      const file = inputFile.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append('foto', file);
+        const token = localStorage.getItem('token');
+        try {
+          const response = await fetch(`${API_URL_BASE}uploads`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            },
+            body: formData
+          });
+          if (response.ok) {
+            const data = await response.json();
+            await atualizarFotoPerfil(usuario.id_usuario, data.caminho);
+            const fotoUrl = `${API_URL_BASE}${data.caminho}`;
+            fotoPerfil.src = fotoUrl;
+            localStorage.setItem('usuario', JSON.stringify({ ...usuario, foto: data.caminho }));
+            alert('Foto de perfil atualizada com sucesso!');
+          } else {
+            console.error('Upload falhou:', response.statusText);
+            alert('Erro ao enviar a foto. Tente novamente.');
+          }
+        } catch (error) {
+          console.error('Erro ao enviar a foto:', error);
+          alert('Erro ao atualizar a foto de perfil. Tente novamente.');
+        }
+      }
+    }, { once: true });
+  });
+}
+
+// Atualizar o caminho da foto de perfil do usuário no banco de dados
+const atualizarFotoPerfil = async (id_usuario, caminho_foto) => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    alert("Sessão expirada. Faça login novamente.");
+    window.location.href = "../login.html";
+    return;
+  }
+  try {
+          const response = await fetch(`${API_URL_BASE}usuarios/foto/${id_usuario}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ foto_perfil: caminho_foto })
+          });
+          if (!response.ok) {
+            throw new Error('Erro ao atualizar foto de perfil');
+          }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log(localStorage.getItem('usuario'));
+  atualizarContagemEventosCriados();
+  atualizarFotoPerfilLocalStorage()
+});

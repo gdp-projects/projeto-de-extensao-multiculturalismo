@@ -16,7 +16,13 @@
 
 /* Reset / tipografia */
 *{box-sizing:border-box}
-html,body{height:100%}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
 body{
   margin:0;
   font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -131,9 +137,95 @@ body{
 .main{
   flex:1;
   padding:28px 36px;
-  display:flex;
-  flex-direction:column;
+  display:grid;
   gap:26px;
+  min-height: calc(100vh - 80px);
+}
+
+.welcome-box {
+    grid-column: span 4 / span 4;
+    grid-row: span 3 / span 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-form {
+    grid-column: span 10 / span 10;
+    grid-row: span 6 / span 6;
+}
+
+.profile-summary {
+    grid-column: span 2 / span 2;
+    grid-row: span 6 / span 6;
+    grid-column-start: 5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.avatar-large {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+#foto-perfil {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Ícone escondido */
+.avatar-large::after {
+  content: "📷";
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 40px;
+
+  opacity: 0;
+  transition: 0.3s ease;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+/* Mostrar ícone no hover */
+.avatar-large:hover::after {
+  opacity: 1;
+}
+
+/* Seu efeito continua */
+#foto-perfil:hover {
+  cursor: pointer;
+  filter: brightness(0.85);
+}
+
+.cards {
+    grid-column: span 4 / span 4;
+    grid-row: span 3 / span 3;
+    grid-row-start: 4;
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 24px;
+    flex: 1;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #6a3c1c;
+  background: linear-gradient(#eee, #ccc);
+  cursor: pointer;
+  background-size: cover !important;
 }
 
 /* Welcome box */
@@ -234,7 +326,7 @@ body{
 /* Perfil */
 .profile-grid{display:grid;grid-template-columns:320px 1fr;gap:22px}
 .profile-summary{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
-.avatar-large img{width:120px;height:120px;border-radius:14px;object-fit:cover}
+.avatar-large img{width:120px;height:120px;border-radius:150px;object-fit:cover}
 .profile-stats{display:flex;gap:12px;margin-top:8px}
 .profile-stats div{background:rgba(0,0,0,0.04);padding:10px 14px;border-radius:10px}
 .btn-block{display:inline-block;padding:10px 14px;margin-top:12px;background:var(--accent);color:white;border-radius:10px;text-decoration:none;font-weight:700}

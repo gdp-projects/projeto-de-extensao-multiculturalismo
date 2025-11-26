@@ -46,6 +46,13 @@ const promoverParaOrganizador = async (id_usuario) => {
     return res.rows[0];
 };
 
+const alterarFotoPerfil = async (id_usuario, novaFoto) => {
+    const res = await pool.query(
+        'UPDATE usuarios SET foto = $1 WHERE id_usuario = $2 RETURNING *',
+        [novaFoto, id_usuario]
+    );
+    return res.rows[0];
+}
 
 export default {
     getAllUsuarios,
@@ -54,5 +61,6 @@ export default {
     createUsuario,
     findUsuarioByNome,
     deleteUsuario,
-    promoverParaOrganizador
+    promoverParaOrganizador,
+    alterarFotoPerfil
 };
