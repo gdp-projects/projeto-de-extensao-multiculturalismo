@@ -32,6 +32,7 @@
     <li><a href="inicio.html">Início</a></li>
     <li><a class="organizer" href="eventos.html">Eventos</a></li>
     <li><a class="organizer" href="relatorios.html">Relatórios</a></li>
+    <li><a href="configuracoes.html">Configurações</a></li>
     <li><a href="acessibilidade.html">Acessibilidade</a></li>
     <li><a href="configuracoes.html">Configurações</a></li>
     <li><a href="#" class="logout">Sair</a></li>
@@ -49,11 +50,6 @@
       <i class="fa-solid fa-calendar-days">
       </i>
       Meus Eventos
-     </a>
-     <a class="nav-item" href="perfil.html">
-      <i class="fa-solid fa-user-pen">
-      </i>
-      Perfil
      </a>
      <a class="nav-item organizer" href="relatorios.html">
       <i class="fa-solid fa-chart-line">
@@ -80,6 +76,9 @@
    </aside>
    <!-- Conteúdo principal -->
     <main class="main">
+    <!-- Seção de Perfil do Usuário -->
+    <div class="top-section">
+     <div class="content-left">
     <section class="welcome-box">
      <div class="welcome-left">
       <h1>
@@ -205,6 +204,40 @@
       </a>
      </article>
     </section>
+    </div>
+    <aside class="sidebar-right">
+    <section class="user-profile-section">
+     <div class="profile-card">
+      <div class="profile-card-top">
+       <div class="avatar-small"></div>
+       <div class="profile-info compact">
+        <h2 id="profile-user-name">Carregando...</h2>
+        <p class="profile-status" id="profile-user-status">
+      <span class="badge-organizer" id="profile-organizer-badge">Organizador</span>
+        </p>
+        <p class="phone-info compact"><i class="fa-solid fa-phone"></i>
+      <span id="profile-user-phone">+55 11 98765-4321</span>
+        </p>
+       </div>
+      </div>
+      <div class="profile-card-stats">
+       <div class="profile-stat compact">
+        <strong id="profile-events-count">0</strong>
+        <small>Eventos</small>
+       </div>
+       <div class="profile-stat compact">
+        <strong id="profile-subscribers-count">0</strong>
+        <small>Inscritos</small>
+       </div>
+       <div class="profile-stat compact">
+        <strong id="profile-sales">R$0</strong>
+        <small>Vendas</small>
+       </div>
+      </div>
+     </div>
+    </section>
+    </aside>
+    </div>
    </main>
   </div>
   <a class="back-btn" href="../../index.html" title="Voltar para Início">
